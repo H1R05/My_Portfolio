@@ -1,54 +1,53 @@
-import { GoProjectRoadmap } from "react-icons/go";
-import { BiSolidCertification } from "react-icons/bi";
-import { FaPersonArrowUpFromLine } from "react-icons/fa6";
-import CounterCard from "../UI/CounterCard";
-import { russoOne } from "../style/permanentMarker";
 import gsap, { ScrollTrigger } from "gsap/all";
 import { useLayoutEffect, useRef } from "react";
 
-const counters = [
-  { number: 2, label: "Progetti", Icon: GoProjectRoadmap },
-  { number: 2, label: "Certificati", Icon: BiSolidCertification },
-  { number: 1, label: "Anni Esperienza", Icon: FaPersonArrowUpFromLine },
+const highlights = [
+  {
+    title: "Prodotti moderni",
+    body: "Mi concentro su esperienze essenziali, con animazioni sobrie e architetture scalabili che non sacrificano le performance.",
+  },
+  {
+    title: "Collaborazione",
+    body: "Lavoro bene in team, condividendo processi, documentazione e best practice per far avanzare i progetti più velocemente.",
+  },
+  {
+    title: "Formazione continua",
+    body: "Sono certificato AWS Cloud Practitioner e investo tempo nell'apprendere nuove tecnologie legate a cloud e front-end.",
+  },
 ];
 
-const cv = "/cvDocument/CVSamu.pdf";
+const experiences = [
+  {
+    period: "2024 — presente",
+    role: "Full‑stack & Cloud",
+    place: "Progetti personali e studio",
+    desc: "Sviluppo applicazioni Next.js con infrastrutture cloud ottimizzate, pipeline CI/CD e componenti riutilizzabili.",
+  },
+  {
+    period: "2023",
+    role: "Formazione tecnica",
+    place: "Certificazioni & corsi",
+    desc: "Approfondimenti su AWS, sicurezza e design system per migliorare il modo in cui concepisco e consegno i prodotti digitali.",
+  },
+];
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
   const sectionRef = useRef(null);
-  const titleRef = useRef(null);
-  const paragraphRef = useRef(null);
-  const buttonRef = useRef(null);
-  const cardRef = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
+      gsap.from(".about-fade", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
+          start: "top 70%",
         },
-      });
-      tl.from(sectionRef.current, { y: 50, autoAlpha: 0, duration: 0.5 });
-      tl.from(titleRef.current, { y: 50, autoAlpha: 0, duration: 0.5 });
-      tl.from(
-        paragraphRef.current,
-        { x: 50, autoAlpha: 0, duration: 0.5 },
-        "-=0.5"
-      );
-      tl.from(
-        buttonRef.current,
-        { y: 50, autoAlpha: 0, duration: 0.5 },
-        "-=0.5"
-      );
-      tl.from(cardRef.current, {
-        y: 50,
-        autoAlpha: 0,
-        stagger: 0.25,
-        duration: 0.5,
       });
     }, sectionRef);
 
@@ -56,53 +55,63 @@ export default function About() {
   }, []);
 
   return (
-    <>
-      <section
-        ref={sectionRef}
-        id="about"
-        className="relative min-h-screen flex flex-col justify-center px-8 py-1 bg-transparent/80"
-      >
-        <div className="container mx-auto text-center max-w-3xl">
-          <h1
-            ref={titleRef}
-            className={`${russoOne.className} text-white drop-shadow-[0_0_8px_#00ffff] text-5xl font-bold mb-10`}
-          >
-            About Me
-          </h1>
-          <p
-            ref={paragraphRef}
-            className={`${russoOne.className} p text-white/80 leading-relaxed mb-8 text-2xl font-semibold`}
-          >
-            Da sempre sono affascinato dal mondo della tecnologia e
-            dell&apos;informatica, ma anche dal design e dall’importanza di un
-            aspetto curato e piacevole. Questa passione mi ha portato a
-            scegliere un percorso di studi che mi permette di unire competenze
-            tecniche e creatività. Mi piace affrontare nuove sfide, trovare
-            soluzioni originali e realizzare progetti che funzionano bene ma
-            sono anche belli da vedere. Sono curioso, voglio imparare sempre di
-            più e godermi il viaggio nel mondo della tecnologia, mettendo il
-            cuore in tutto quello che faccio.
+    <section
+      ref={sectionRef}
+      id="about"
+      className="relative min-h-screen flex items-center justify-center px-6 py-20"
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent opacity-40" aria-hidden />
+      <div className="relative z-10 grid max-w-6xl mx-auto gap-12 lg:grid-cols-[1.1fr_0.9fr] items-start">
+        <div className="space-y-6 about-fade">
+          <p className="text-sm uppercase tracking-[0.25em] text-gray-400">Profilo</p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-white leading-tight">
+            Mi piacciono i prodotti curati, le stack pulite e le esperienze che fanno la differenza.
+          </h2>
+          <p className="text-lg text-gray-200 leading-relaxed">
+            Porto un approccio ibrido tra design e ingegneria: organizzo componenti, definisco linee guida visive e costruisco
+            infrastrutture affidabili. Concilio esigenze di business e performance per creare interfacce veloci, inclusive e facili da mantenere.
           </p>
-          <a href={cv} download="CVSamu.pdf">
-            <button className="button relative py-2 px-8 text-black text-base font-bold rounded-full overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-orange before:to-orange/80 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
-              Download CV
-            </button>
-          </a>
-          <div
-            ref={cardRef}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16"
-          >
-            {counters.map((counters, idx) => (
-              <CounterCard
+          <div className="grid sm:grid-cols-2 gap-4">
+            {highlights.map((item, idx) => (
+              <div
                 key={idx}
-                number={counters.number}
-                label={counters.label}
-                Icon={counters.Icon}
-              />
+                className="about-fade p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/30 transition-colors"
+              >
+                <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                <p className="text-sm text-gray-200 leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
+          <a
+            href="/cvDocument/CVSamu.pdf"
+            className="about-fade inline-flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-r from-orange to-amber-400 text-blue-900 font-semibold shadow-[0_12px_30px_rgba(255,149,5,0.35)] hover:translate-y-[-2px] transition-transform"
+          >
+            Scarica il CV completo
+            <span className="text-lg">↓</span>
+          </a>
+        </div>
+
+        <div className="glass-card about-fade rounded-3xl p-8 border border-white/10 space-y-6">
+          <div className="flex items-center justify-between">
+            <p className="text-sm uppercase tracking-[0.18em] text-gray-400">Percorso</p>
+            <span className="tag">In crescita</span>
+          </div>
+          <div className="space-y-5">
+            {experiences.map((exp, idx) => (
+              <div key={idx} className="border-b border-white/10 pb-5 last:border-0 last:pb-0">
+                <p className="text-xs uppercase tracking-[0.18em] text-orange mb-2">{exp.period}</p>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-semibold text-white">{exp.role}</h3>
+                    <p className="text-sm text-gray-300">{exp.place}</p>
+                    <p className="text-sm text-gray-200 leading-relaxed">{exp.desc}</p>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

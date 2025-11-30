@@ -2,7 +2,6 @@
 import gsap from "gsap";
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { russoOne } from "../style/permanentMarker";
-import Image from "next/image";
 
 type NavLink = { name: string; id: string };
 
@@ -23,8 +22,8 @@ export default function Header() {
       const tl = gsap.timeline({
         defaults: { duration: 1.5, ease: "power3.out" },
       });
-      tl.from(cardRef.current, { y: -80, opacity: 0, scale: 1 });
-      tl.from(logoRef.current, { x: -50, opacity: 0, scale: 1 }, "-=0.5");
+      tl.from(cardRef.current, { y: -80, opacity: 0, scale: 0.97 });
+      tl.from(logoRef.current, { x: -30, opacity: 0, scale: 0.98 }, "-=0.8");
     }, cardRef);
     return () => ctx.revert();
   }, []);
@@ -54,43 +53,57 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="fixed top-4 left-0 w-full z-50 flex justify-center">
-      <div
-        ref={cardRef}
-        className="w-[85%] max-w-3xl h-20
-        bg-gradient-to-r from-slate-600/80 to-slate-700/40
-        backdrop-blur-lg shadow-[0_10px_15px_rgba(255,255,100,0.2)]
-        rounded-full flex items-center justify-around px-6 border border-white/50"
-      >
-        <div ref={logoRef} className="items-center">
-          <Image
-            width={10}
-            height={10}
-            className="h-40 mt-3 w-auto object-contain"
-            alt={""}
-            src={"../elements/logoSitoWeb.svg"}
-          ></Image>
-        </div>
+    <header className="fixed top-0 inset-x-0 z-50">
+      <div className="mx-auto max-w-6xl px-6 pt-6">
+        <div
+          ref={cardRef}
+          className="glass-card rounded-full px-6 py-3 flex items-center justify-between border border-white/10"
+        >
+          <div ref={logoRef} className="flex items-center gap-3">
+            <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-orange to-cyan-400 shadow-lg shadow-cyan-500/20" />
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-gray-300">Samuele Angelicchio</p>
+              <p className="text-sm sm:text-base font-semibold text-white">Cloud &amp; Full‑Stack Engineer</p>
+            </div>
+          </div>
 
-        <nav className="flex space-x-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              onClick={() => setActive(link.id)}
-              className={`${
-                russoOne.className
-              } text-lg tracking-wide uppercase transition-all duration-300
-                ${
+          <nav className="hidden sm:flex items-center space-x-6 text-sm font-medium">
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={() => setActive(link.id)}
+                className={`relative px-2 py-1 transition-colors duration-300 ${
                   active === link.id
-                    ? "text-yellowLight drop-shadow-[0_0_5px_#ff2e63]"
-                    : "text-silver hover:text-yellowLight hover:drop-shadow-[0_0_5px_#ff2e63]"
+                    ? "text-white"
+                    : "text-gray-400 hover:text-white"
                 }`}
+              >
+                {link.name}
+                {active === link.id && (
+                  <span className="absolute left-1/2 -bottom-2 h-[6px] w-[6px] -translate-x-1/2 rounded-full bg-orange shadow-[0_0_12px_rgba(255,149,5,0.8)]" />
+                )}
+              </a>
+            ))}
+          </nav>
+
+          <a
+            href="#contact"
+            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-orange to-amber-400 text-blue-900 shadow-[0_10px_30px_rgba(255,149,5,0.35)] transition-transform duration-200 hover:scale-[1.02]"
+          >
+            Disponibile ora
+            <span className="text-lg">↗</span>
+          </a>
+
+          <div className="sm:hidden">
+            <a
+              href="#contact"
+              className={`${russoOne.className} text-sm text-white uppercase tracking-[0.25em]`}
             >
-              {link.name}
+              Menu
             </a>
-          ))}
-        </nav>
+          </div>
+        </div>
       </div>
     </header>
   );

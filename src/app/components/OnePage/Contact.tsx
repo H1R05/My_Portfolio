@@ -84,99 +84,99 @@ export default function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="min-h-screen flex items-center justify-center py-24 px-6 bg-transparent/80 relative z-10"
+      className="relative min-h-screen flex items-center justify-center px-6 py-24"
     >
-      <form
-        onSubmit={handleSubmit}
-        className="relative max-w-lg w-full bg-[#0b132b]/80 backdrop-blur-lg 
-                   border border-yellow-400/30 rounded-3xl p-10 
-                   shadow-[0_0_25px_rgba(255,215,0,0.15)]
-                   transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,215,0,0.3)]"
-      >
-        <div
-          className="absolute inset-0 rounded-3xl bg-gradient-to-r 
-                        from-yellow-400/10 via-transparent to-yellow-400/10 
-                        pointer-events-none"
-        ></div>
-
-        <h2 className="text-4xl font-extrabold text-white text-center mb-10 drop-shadow-[0_0_10px_#00ffff]">
-          Contattami ✉️
-        </h2>
-
-        <div className="mb-6">
-          <label className="block mb-2 text-yellow-300 font-semibold uppercase text-sm tracking-widest">
-            Nome
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="Il tuo nome completo"
-            required
-            className="w-full px-4 py-3 rounded-xl bg-white/10 text-white 
-                       border border-transparent focus:outline-none 
-                       focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400/50 
-                       placeholder-gray-400 transition-all duration-200"
-          />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-black/40 opacity-50" aria-hidden />
+      <div className="relative z-10 max-w-5xl w-full grid gap-10 lg:grid-cols-[0.85fr_1.15fr] items-center">
+        <div className="glass-card rounded-3xl p-8 border border-white/10 space-y-6">
+          <p className="text-sm uppercase tracking-[0.25em] text-gray-400">Parliamo del tuo prossimo progetto</p>
+          <h2 className="text-4xl font-semibold text-white leading-tight">
+            Dimmi di cosa hai bisogno e costruiremo qualcosa di essenziale e performante.
+          </h2>
+          <p className="text-lg text-gray-200">
+            Che si tratti di ottimizzare un flusso cloud, creare un design system o lanciare una nuova esperienza web, posso aiutarti a trasformare l&apos;idea in realtà.
+          </p>
+          <div className="space-y-3 text-gray-200">
+            <div className="flex items-center gap-3">
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
+              <p>Disponibile per collaborazioni remote • CET</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="tag">Email preferita</span>
+              <a href="mailto:angelicchio.samuele2004@gmail.com" className="text-white font-semibold hover:text-orange">
+                angelicchio.samuele2004@gmail.com
+              </a>
+            </div>
+          </div>
         </div>
 
-        <div className="mb-6">
-          <label className="block mb-2 text-yellow-300 font-semibold uppercase text-sm tracking-widest">
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            placeholder="nome.cognome@esempio.it"
-            required
-            className="w-full px-4 py-3 rounded-xl bg-white/10 text-white 
-                       border border-transparent focus:outline-none 
-                       focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400/50 
-                       placeholder-gray-400 transition-all duration-200"
-          />
-        </div>
-        <div className="mb-8">
-          <label className="block mb-2 text-yellow-300 font-semibold uppercase text-sm tracking-widest">
-            Messaggio
-          </label>
-          <textarea
-            name="message"
-            value={form.message}
-            onChange={handleChange}
-            placeholder="Cosa hai in mente?"
-            required
-            className="w-full px-4 py-3 rounded-xl bg-white/10 text-white h-32 
-                       border border-transparent focus:outline-none 
-                       focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400/50 
-                       placeholder-gray-400 transition-all duration-200 resize-none"
-          />
-        </div>
-        <input
-          type="text"
-          name="honeypot"
-          value={form.honeypot}
-          onChange={handleChange}
-          className="hidden"
-          tabIndex={-1}
-          autoComplete="off"
-        />
-        <button
-          type="submit"
-          disabled={loading || success}
-          className={`bg-gradient-to-r from-yellow-400 to-yellow-300 
-                     text-blue-900 font-extrabold w-full py-3 rounded-xl 
-                     uppercase text-lg tracking-wider shadow-[0_0_20px_rgba(255,215,0,0.4)] 
-                     transition-all duration-300 
-                     hover:shadow-[0_0_35px_rgba(255,215,0,0.7)] hover:scale-[1.02]
-                     disabled:opacity-50 disabled:scale-100 
-                     ${success ? "bg-green-400 text-green-900" : ""}`}
+        <form
+          onSubmit={handleSubmit}
+          className="glass-card rounded-3xl p-8 border border-white/10 shadow-2xl"
         >
-          {loading ? "Invio..." : success ? "Inviato!☑" : "Invia Messaggio"}
-        </button>
-      </form>
+          <div className="grid gap-5">
+            <div className="grid gap-2">
+              <label className="text-sm uppercase tracking-[0.2em] text-gray-400">Nome</label>
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Il tuo nome completo"
+                required
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange"
+              />
+            </div>
+
+            <div className="grid gap-2">
+              <label className="text-sm uppercase tracking-[0.2em] text-gray-400">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="nome.cognome@esempio.it"
+                required
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange"
+              />
+            </div>
+
+            <div className="grid gap-2">
+              <label className="text-sm uppercase tracking-[0.2em] text-gray-400">Messaggio</label>
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                placeholder="Raccontami cosa vorresti realizzare"
+                required
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange h-32 resize-none"
+              />
+            </div>
+
+            <input
+              type="text"
+              name="honeypot"
+              value={form.honeypot}
+              onChange={handleChange}
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+            />
+
+            {error && <p className="text-red-400 text-sm">{error}</p>}
+            {success && <p className="text-emerald-400 text-sm">Messaggio inviato con successo!</p>}
+
+            <button
+              type="submit"
+              disabled={loading || success}
+              className={`inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange to-amber-400 text-blue-900 font-semibold w-full py-3 rounded-xl shadow-[0_10px_30px_rgba(255,149,5,0.35)] transition-transform duration-200 hover:scale-[1.01] disabled:opacity-50 ${success ? "bg-green-400 text-green-900" : ""}`}
+            >
+              {loading ? "Invio..." : success ? "Inviato" : "Invia messaggio"}
+              <span className="text-lg">↗</span>
+            </button>
+          </div>
+        </form>
+      </div>
     </section>
   );
 }
