@@ -4,7 +4,7 @@ import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import LoadingScreen from "./components/UI/LoadingScreen";
 import { useState, useEffect } from "react";
-import ParticleBackgroundAdvanced from "./components/style/AnimatedBackground";
+import { spaceGrotesk } from "./components/style/permanentMarker";
 
 export default function RootLayout({
   children,
@@ -20,13 +20,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>SamuPortfolio</title>
+        <title>Samuele Angelicchio — Portfolio</title>
         <link rel="icon" href="../elements/favicon.ico" type="image/x-icon" />
+        <meta
+          name="description"
+          content="Portfolio di Samuele Angelicchio: sviluppo cloud, full stack e prodotti digitali."
+        />
       </head>
-      <body className="flex flex-col min-h-screen bg-unique-pattern">
+      <body className={`${spaceGrotesk.className} flex flex-col min-h-screen`}> 
         <Header></Header>
         <main className="flex-1">
-          <ParticleBackgroundAdvanced></ParticleBackgroundAdvanced>{" "}
           {loading ? <LoadingScreen /> : children}
         </main>
         <Footer></Footer>

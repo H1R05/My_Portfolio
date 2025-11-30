@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface ProjectCardProps {
   Img: string;
@@ -8,49 +9,48 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ Img, title, description, github }: ProjectCardProps) => (
-  <div
-    className="relative w-80 flex flex-col 
-    bg-[#0b132b]/80 border border-yellow-300/30 rounded-2xl overflow-hidden 
-    shadow-[0_0_20px_rgba(255,215,0,0.15)]
-    transition-all duration-300 hover:scale-[1.04] 
-    hover:shadow-[0_0_25px_rgba(255,215,0,0.35)]"
-  >
-    <div
-      className="absolute inset-0 pointer-events-none rounded-2xl 
-      bg-gradient-to-r from-yellow-400/20 via-transparent to-yellow-400/20 
-      opacity-0 group-hover:opacity-80 
-      transition-opacity duration-500 ease-out z-0"
-    ></div>
+  <article className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-lg p-1">
+    <div className="overflow-hidden rounded-[26px] bg-black/60">
+      <div className="relative">
+        <div className="relative w-full h-56">
+          <Image
+            src={Img}
+            alt={title}
+            fill
+            className="object-cover opacity-90 transition duration-500 group-hover:scale-105"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            priority
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <div className="absolute top-4 left-4 flex gap-3">
+          <span className="tag bg-white/10 text-xs uppercase tracking-[0.2em]">Progetto</span>
+        </div>
+      </div>
 
-    <div className="relative z-10 p-5 flex flex-col h-full">
-      <img
-        src={Img}
-        alt={title}
-        className="rounded-xl mb-4 w-full h-44 object-cover shadow-md 
-        transition-transform duration-300 hover:scale-105"
-      />
-
-      <h2 className="text-white text-2xl font-semibold drop-shadow-[0_0_6px_#00ffff] mb-2">
-        {title}
-      </h2>
-
-      <p className="mt-2 text-yellow-200/90 text-base font-medium line-clamp-3 flex-grow">
-        {description}
-      </p>
-
-      <a
-        href={github}
-        target="_blank"
-        className="mt-5 inline-block bg-gradient-to-r from-yellow-400 to-yellow-300 
-        text-blue-900 font-bold py-2 px-4 rounded-md text-center 
-        shadow-[0_0_15px_rgba(255,215,0,0.4)]
-        hover:shadow-[0_0_25px_rgba(255,215,0,0.7)] 
-        hover:scale-105 transition-all duration-300"
-      >
-        Visualizza su GitHub →
-      </a>
+      <div className="p-6 space-y-4">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h3 className="text-2xl font-semibold text-white">{title}</h3>
+            <p className="mt-2 text-gray-200 leading-relaxed">{description}</p>
+          </div>
+          <span className="h-10 w-10 rounded-full bg-gradient-to-br from-orange to-amber-400 opacity-80" />
+        </div>
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-gray-400">Tecnologie: React • Node • AWS</p>
+          <a
+            href={github}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 text-white font-semibold transition-colors hover:text-orange"
+          >
+            GitHub
+            <span className="text-lg">↗</span>
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
+  </article>
 );
 
 export default ProjectCard;

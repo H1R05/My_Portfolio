@@ -44,11 +44,51 @@
   .animate-marquee-reverse {
     animation: marquee-reverse 25s linear infinite;
   }
+
+  .grid-overlay {
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.035) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 140px 140px, 140px 140px;
+    mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.8), transparent 70%);
+  }
+
+  .glass-card {
+    backdrop-filter: blur(12px);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  }
+
+  .tag {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    color: #e8f0ff;
+    padding: 6px 12px;
+    border-radius: 9999px;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+  }
 }
 html,
 body {
   scroll-behavior: smooth;
-  background-image: url("/elements/backgroundWaves.webp");
-  background-color: black;
-  background-repeat: repeat;
+  background: radial-gradient(circle at 20% 20%, rgba(0, 186, 255, 0.08), transparent 25%),
+    radial-gradient(circle at 80% 0%, rgba(255, 149, 5, 0.12), transparent 20%),
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.05), transparent 35%),
+    #060a12;
+  color: #e4ecff;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.05), transparent 55%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 25%);
+  opacity: 0.5;
+  pointer-events: none;
+  mix-blend-mode: screen;
 }

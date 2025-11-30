@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 
 interface CertificateCardProps {
   preview: string;
@@ -14,59 +15,51 @@ const CertificateCard: React.FC<CertificateCardProps> = ({
   const [showPdf, setShowPdf] = useState(false);
 
   return (
-    <div
-      className="relative w-80 flex flex-col 
-      bg-[#0b132b]/80 border border-yellow-300/30 rounded-2xl overflow-hidden 
-      shadow-[0_0_20px_rgba(255,215,0,0.15)]
-      p-4 transition-all duration-300 hover:scale-[1.04] 
-      hover:shadow-[0_0_25px_rgba(255,215,0,0.35)]"
-    >
-      <div
-        className="absolute inset-0 pointer-events-none rounded-2xl 
-        bg-gradient-to-r from-yellow-400/20 via-transparent to-yellow-400/20 
-        opacity-0 group-hover:opacity-80 
-        transition-opacity duration-500 ease-out z-0"
-      ></div>
-
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="relative mb-4 ">
+    <article className="group relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-1 overflow-hidden">
+      <div className="rounded-[26px] overflow-hidden bg-black/60">
+        <div className="relative">
           {!showPdf ? (
-            <img
-              src={preview}
-              alt={`Anteprima del certificato ${name}`}
-              className="w-full h-40 object-cover rounded-lg cursor-pointer shadow-md 
-              transition-transform duration-300 hover:scale-[1.03]"
-              onClick={() => setShowPdf(true)}
-            />
+            <div className="relative w-full h-44 cursor-pointer" onClick={() => setShowPdf(true)}>
+              <Image
+                src={preview}
+                alt={`Anteprima del certificato ${name}`}
+                fill
+                className="object-cover transition duration-300 group-hover:scale-105"
+                sizes="(min-width: 1024px) 33vw, 100vw"
+                priority
+              />
+            </div>
           ) : (
             <iframe
               src={file}
-              className="w-full h-40 border border-yellow-400/30 rounded-lg"
+              className="w-full h-44 border-0"
               title={name}
             />
           )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          <div className="absolute top-3 left-3 tag text-[11px]">Certificato</div>
         </div>
 
-        <h3 className="text-white text-xl font-semibold mb-3 drop-shadow-[0_0_6px_#00ffff]">
-          {name}
-        </h3>
-
-        <a
-          href={file}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-auto inline-block w-full text-center py-2 px-4 rounded-lg 
-          bg-gradient-to-r from-yellow-400 to-yellow-300 text-blue-900 font-bold 
-          transition-all duration-300 
-          shadow-[0_0_15px_rgba(255,215,0,0.4)]
-          hover:shadow-[0_0_25px_rgba(255,215,0,0.7)] 
-          hover:scale-105"
-        >
-          {showPdf ? "Scarica" : "Visualizza PDF"}
-          <span className="ml-2">→</span>
-        </a>
+        <div className="p-5 space-y-4">
+          <h3 className="text-xl font-semibold text-white">{name}</h3>
+          <p className="text-sm text-gray-300">
+            Verifica e scarica il PDF per scoprire il percorso e le competenze validate.
+          </p>
+          <div className="flex items-center justify-between">
+            <span className="tag">PDF</span>
+            <a
+              href={file}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-white font-semibold hover:text-orange transition-colors"
+            >
+              {showPdf ? "Scarica" : "Apri"}
+              <span className="text-lg">↗</span>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+    </article>
   );
 };
 
