@@ -1,7 +1,7 @@
 "use client";
 import gsap from "gsap";
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { russoOne } from "../style/permanentMarker";
+import { russoOne } from "../fonts/permanentMarker";
 
 type NavLink = { name: string; id: string };
 
@@ -54,7 +54,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50">
-      <div className="mx-auto max-w-6xl px-6 pt-6">
+      <div className="mx-auto max-w-5xl px-6 pt-6">
         <div
           ref={cardRef}
           className="glass-card rounded-full px-6 py-3 flex items-center justify-between border border-white/10"
@@ -62,8 +62,12 @@ export default function Header() {
           <div ref={logoRef} className="flex items-center gap-3">
             <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-orange to-cyan-400 shadow-lg shadow-cyan-500/20" />
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-gray-300">Samuele Angelicchio</p>
-              <p className="text-sm sm:text-base font-semibold text-white">Cloud &amp; Full‑Stack Engineer</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-gray-300">
+                Samuele Angelicchio
+              </p>
+              <p className="text-sm sm:text-base font-semibold text-white">
+                Cloud &amp; Full‑Stack Developer
+              </p>
             </div>
           </div>
 
@@ -86,15 +90,6 @@ export default function Header() {
               </a>
             ))}
           </nav>
-
-          <a
-            href="#contact"
-            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-orange to-amber-400 text-blue-900 shadow-[0_10px_30px_rgba(255,149,5,0.35)] transition-transform duration-200 hover:scale-[1.02]"
-          >
-            Disponibile ora
-            <span className="text-lg">↗</span>
-          </a>
-
           <div className="sm:hidden">
             <a
               href="#contact"

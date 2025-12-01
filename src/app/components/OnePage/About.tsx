@@ -3,10 +3,6 @@ import { useLayoutEffect, useRef } from "react";
 
 const highlights = [
   {
-    title: "Prodotti moderni",
-    body: "Mi concentro su esperienze essenziali, con animazioni sobrie e architetture scalabili che non sacrificano le performance.",
-  },
-  {
     title: "Collaborazione",
     body: "Lavoro bene in team, condividendo processi, documentazione e best practice per far avanzare i progetti più velocemente.",
   },
@@ -60,16 +56,27 @@ export default function About() {
       id="about"
       className="relative min-h-screen flex items-center justify-center px-6 py-20"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent opacity-40" aria-hidden />
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent opacity-40"
+        aria-hidden
+      />
       <div className="relative z-10 grid max-w-6xl mx-auto gap-12 lg:grid-cols-[1.1fr_0.9fr] items-start">
         <div className="space-y-6 about-fade">
-          <p className="text-sm uppercase tracking-[0.25em] text-gray-400">Profilo</p>
+          <p className="text-sm uppercase tracking-[0.25em] text-gray-400">
+            Profilo
+          </p>
           <h2 className="text-4xl md:text-5xl font-semibold text-white leading-tight">
-            Mi piacciono i prodotti curati, le stack pulite e le esperienze che fanno la differenza.
+            Da sempre sono affascinato dal mondo della tecnologia e
+            dell'informatica.
           </h2>
           <p className="text-lg text-gray-200 leading-relaxed">
-            Porto un approccio ibrido tra design e ingegneria: organizzo componenti, definisco linee guida visive e costruisco
-            infrastrutture affidabili. Concilio esigenze di business e performance per creare interfacce veloci, inclusive e facili da mantenere.
+            Questa passione mi ha portato a scegliere un percorso di studi che
+            mi permette di unire competenze tecniche e creatività. Mi piace
+            affrontare nuove sfide, trovare soluzioni originali e realizzare
+            progetti che funzionano bene ma sono anche belli da vedere. Sono
+            curioso, voglio imparare sempre di più e godermi il viaggio nel
+            mondo della tecnologia, mettendo il cuore in tutto quello che
+            faccio.
           </p>
           <div className="grid sm:grid-cols-2 gap-4">
             {highlights.map((item, idx) => (
@@ -77,8 +84,12 @@ export default function About() {
                 key={idx}
                 className="about-fade p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/30 transition-colors"
               >
-                <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-200 leading-relaxed">{item.body}</p>
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-gray-200 leading-relaxed">
+                  {item.body}
+                </p>
               </div>
             ))}
           </div>
@@ -93,18 +104,29 @@ export default function About() {
 
         <div className="glass-card about-fade rounded-3xl p-8 border border-white/10 space-y-6">
           <div className="flex items-center justify-between">
-            <p className="text-sm uppercase tracking-[0.18em] text-gray-400">Percorso</p>
+            <p className="text-sm uppercase tracking-[0.18em] text-gray-400">
+              Percorso
+            </p>
             <span className="tag">In crescita</span>
           </div>
           <div className="space-y-5">
             {experiences.map((exp, idx) => (
-              <div key={idx} className="border-b border-white/10 pb-5 last:border-0 last:pb-0">
-                <p className="text-xs uppercase tracking-[0.18em] text-orange mb-2">{exp.period}</p>
+              <div
+                key={idx}
+                className="border-b border-white/10 pb-5 last:border-0 last:pb-0"
+              >
+                <p className="text-xs uppercase tracking-[0.18em] text-orange mb-2">
+                  {exp.period}
+                </p>
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-2">
-                    <h3 className="text-xl font-semibold text-white">{exp.role}</h3>
+                    <h3 className="text-xl font-semibold text-white">
+                      {exp.role}
+                    </h3>
                     <p className="text-sm text-gray-300">{exp.place}</p>
-                    <p className="text-sm text-gray-200 leading-relaxed">{exp.desc}</p>
+                    <p className="text-sm text-gray-200 leading-relaxed">
+                      {exp.desc}
+                    </p>
                   </div>
                 </div>
               </div>

@@ -62,13 +62,21 @@ export default function Projects() {
       ref={sectionRef}
       className="relative min-h-screen px-6 py-20"
     >
-      <div className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-transparent opacity-30" aria-hidden />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-transparent opacity-30"
+        aria-hidden
+      />
       <div className="relative z-10 max-w-6xl mx-auto space-y-14">
         <div className="portfolio-fade space-y-4 max-w-3xl">
-          <p className="text-sm uppercase tracking-[0.25em] text-gray-400">Selezione</p>
-          <h2 className="text-4xl md:text-5xl font-semibold text-white">Progetti e credenziali recenti</h2>
+          <p className="text-sm uppercase tracking-[0.25em] text-gray-400">
+            Selezione
+          </p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-white">
+            Progetti e credenziali recenti
+          </h2>
           <p className="text-lg text-gray-200">
-            Un mix di prodotti web, automazioni e certificazioni che mostrano come traduco bisogni reali in esperienze digitali solide.
+            Un mix di prodotti web, automazioni e certificazioni che mostrano
+            come traduco bisogni reali in esperienze digitali solide.
           </p>
         </div>
 
@@ -87,10 +95,13 @@ export default function Projects() {
         <div className="glass-card portfolio-fade rounded-3xl border border-white/10 p-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
             <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-400">Stack tecnologico</p>
-              <h3 className="text-2xl font-semibold text-white">Tecnologie che uso ogni giorno</h3>
+              <p className="text-sm uppercase tracking-[0.2em] text-gray-400">
+                Stack tecnologico
+              </p>
+              <h3 className="text-2xl font-semibold text-white">
+                Tecnologie che uso ogni giorno
+              </h3>
             </div>
-            <span className="tag">Typescript • AWS • Next.js</span>
           </div>
           <div className="relative overflow-hidden rounded-2xl bg-white/5 border border-white/10">
             <TechStackTicker />
@@ -100,8 +111,12 @@ export default function Projects() {
         <div className="portfolio-fade space-y-6">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-400">Certificazioni</p>
-              <h3 className="text-2xl font-semibold text-white">Attestati di competenza</h3>
+              <p className="text-sm uppercase tracking-[0.2em] text-gray-400">
+                Certificazioni
+              </p>
+              <h3 className="text-2xl font-semibold text-white">
+                Attestati di competenza
+              </h3>
             </div>
             <span className="tag">2023 — 2024</span>
           </div>

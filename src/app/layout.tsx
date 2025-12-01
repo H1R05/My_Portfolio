@@ -4,7 +4,7 @@ import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import LoadingScreen from "./components/UI/LoadingScreen";
 import { useState, useEffect } from "react";
-import { spaceGrotesk } from "./components/style/permanentMarker";
+import { bebasNeue } from "./components/fonts/permanentMarker";
 
 export default function RootLayout({
   children,
@@ -27,11 +27,9 @@ export default function RootLayout({
           content="Portfolio di Samuele Angelicchio: sviluppo cloud, full stack e prodotti digitali."
         />
       </head>
-      <body className={`${spaceGrotesk.className} flex flex-col min-h-screen`}> 
+      <body className={`${bebasNeue.className} flex flex-col min-h-screen`}>
         <Header></Header>
-        <main className="flex-1">
-          {loading ? <LoadingScreen /> : children}
-        </main>
+        <main className="flex-1">{loading ? <LoadingScreen /> : children}</main>
         <Footer></Footer>
       </body>
     </html>
