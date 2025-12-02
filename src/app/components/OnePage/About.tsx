@@ -67,7 +67,7 @@ export default function About() {
           </p>
           <h2 className="text-4xl md:text-5xl font-semibold text-white leading-tight">
             Da sempre sono affascinato dal mondo della tecnologia e
-            dell'informatica.
+            dell&apos;informatica.
           </h2>
           <p className="text-lg text-gray-200 leading-relaxed">
             Questa passione mi ha portato a scegliere un percorso di studi che
