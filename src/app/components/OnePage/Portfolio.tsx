@@ -4,6 +4,7 @@ import CertificateCard from "../UI/CertificateCard";
 import gsap from "gsap";
 import { useLayoutEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { bebasNeue } from "../fonts/permanentMarker";
 
 const projects = [
   {
@@ -60,13 +61,51 @@ export default function Projects() {
     <section
       id="portfolio"
       ref={sectionRef}
-      className="relative min-h-screen px-6 py-20"
+      className="relative min-h-screen px-6 py-32 overflow-hidden"
     >
-      <div
-        className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-transparent opacity-30"
-        aria-hidden
-      />
-      <div className="relative z-10 max-w-6xl mx-auto space-y-14">
+      {/* FRAME + MINI BLUR + HUD */}
+      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
+        {/* Mini blur SX (ciano) */}
+        <div className="absolute left-[-5%] top-[25%] h-[15rem] w-[14rem] rounded-full bg-cyan-400 blur-[150px] opacity-15"></div>
+
+        {/* Mini blur DX (rosso) */}
+        <div className="absolute right-[-5%] bottom-[20%] h-[15rem] w-[15rem] rounded-full bg-[#ee4266] blur-[150px] opacity-15"></div>
+
+        {/* Frame HUD - linee laterali */}
+        <div className="absolute top-0 left-[3rem] w-px h-full bg-white/5"></div>
+        <div className="absolute top-0 right-[3rem] w-px h-full bg-white/5"></div>
+
+        {/* Decorazione laterale ciano */}
+        <div className="absolute left-[3rem] top-1/2 -translate-y-1/2 flex flex-col items-center gap-1">
+          <div className="w-7 h-px bg-cyan-400/50"></div>
+          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]"></div>
+        </div>
+
+        {/* Decorazione laterale rossa */}
+        <div className="absolute right-[3rem] top-1/2 -translate-y-1/2 flex flex-col items-center gap-1">
+          <div className="w-7 h-px bg-[#ee4266]/50"></div>
+          <div className="w-1.5 h-1.5 rounded-full bg-[#ee4266] shadow-[0_0_10px_rgba(238,66,102,0.8)]"></div>
+        </div>
+
+        {/* Linea orizzontale sopra la griglia */}
+        <div className="absolute top-[23%] left-0 w-full h-px bg-white/5"></div>
+
+        {/* Corner tech sopra il titolo */}
+        <div className="absolute top-[23%] left-[3rem] -translate-x-1/2 -translate-y-1/2">
+          <div className="w-6 h-px bg-white/10"></div>
+          <div className="w-px h-6 bg-white/10"></div>
+        </div>
+
+        <div className="absolute right-[3rem] top-1/2 -translate-y-1/2 rotate-90 flex items-center gap-3 text-white/40 text-sm tracking-[0.25em] font-semibold">
+          <span className="h-px w-10 bg-white/10"></span>
+          <span>PORTFOLIO</span>
+          <span className="h-1 w-1 rounded-full bg-white/25"></span>
+        </div>
+      </div>
+
+      {/* CONTENUTO */}
+      <div className="relative z-10 max-w-6xl mx-auto space-y-16">
+        {/* INTRO */}
         <div className="portfolio-fade space-y-4 max-w-3xl">
           <p className="text-sm uppercase tracking-[0.25em] text-gray-400">
             Selezione
@@ -74,12 +113,14 @@ export default function Projects() {
           <h2 className="text-4xl md:text-5xl font-semibold text-white">
             Progetti e credenziali recenti
           </h2>
-          <p className="text-lg text-gray-200">
+          <p className="text-lg text-gray-200 max-w-2xl">
             Un mix di prodotti web, automazioni e certificazioni che mostrano
-            come traduco bisogni reali in esperienze digitali solide.
+            come trasformo idee e problemi reali in esperienze digitali solide,
+            funzionali e moderne.
           </p>
         </div>
 
+        {/* GRID PROGETTI */}
         <div className="grid gap-6 md:grid-cols-2 portfolio-fade">
           {projects.map((project, idx) => (
             <ProjectCard
@@ -92,6 +133,7 @@ export default function Projects() {
           ))}
         </div>
 
+        {/* STACK */}
         <div className="glass-card portfolio-fade rounded-3xl border border-white/10 p-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
             <div>
@@ -108,6 +150,7 @@ export default function Projects() {
           </div>
         </div>
 
+        {/* CERTIFICAZIONI */}
         <div className="portfolio-fade space-y-6">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div>
@@ -120,6 +163,7 @@ export default function Projects() {
             </div>
             <span className="tag">2023 — 2024</span>
           </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {certificates.map((cert, idx) => (
               <CertificateCard key={idx} {...cert} />

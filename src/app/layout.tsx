@@ -4,7 +4,7 @@ import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import LoadingScreen from "./components/UI/LoadingScreen";
 import { useState, useEffect } from "react";
-import { bebasNeue } from "./components/fonts/permanentMarker";
+import { inter } from "./components/fonts/permanentMarker";
 
 export default function RootLayout({
   children,
@@ -27,7 +27,7 @@ export default function RootLayout({
           content="Portfolio di Samuele Angelicchio: sviluppo cloud, full stack e prodotti digitali."
         />
       </head>
-      <body className={`${bebasNeue.className} flex flex-col min-h-screen`}>
+      <body className={`${inter.className} flex flex-col min-h-screen`}>
         <Header></Header>
         <main className="flex-1">{loading ? <LoadingScreen /> : children}</main>
         <Footer></Footer>

@@ -1,7 +1,7 @@
 "use client";
 import gsap from "gsap";
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { russoOne } from "../fonts/permanentMarker";
+import { inter } from "../fonts/permanentMarker";
 
 type NavLink = { name: string; id: string };
 
@@ -93,7 +93,7 @@ export default function Header() {
           <div className="sm:hidden">
             <a
               href="#contact"
-              className={`${russoOne.className} text-sm text-white uppercase tracking-[0.25em]`}
+              className={`${inter.className} text-sm text-white uppercase tracking-[0.25em]`}
             >
               Menu
             </a>

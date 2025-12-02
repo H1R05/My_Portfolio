@@ -2,9 +2,9 @@ import { Inter } from "next/font/google";
 import { Work_Sans } from "next/font/google";
 import { Bebas_Neue } from "next/font/google";
 
-export const russoOne = Inter({
+export const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: "800",
   variable: "--font-body",
 });
 
