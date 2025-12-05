@@ -4,8 +4,6 @@ import CertificateCard from "../UI/CertificateCard";
 import gsap from "gsap";
 import { useLayoutEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { bebasNeue } from "../fonts/permanentMarker";
-
 const projects = [
   {
     Img: "/project/galleriaSteganografia.png",
@@ -13,12 +11,14 @@ const projects = [
     description:
       "Una semplice galleria immagini con l'implementazione della steganografia ",
     github: "https://github.com/H1R05/GalleriaIMG-Steganografia",
+    category: "Progetto",
   },
   {
     Img: "/project/sitoPortfolio.png",
     title: "Modern Web Portfolio",
     description: "Portfolio personale moderno che mi rappresenta",
     github: "https://github.com/H1R05/SamuApp",
+    category: "Progetto",
   },
 ];
 const certificates = [
@@ -26,11 +26,13 @@ const certificates = [
     preview: "/certificate/CertificatoWebDeveloperPreview.png",
     name: "Certificato Web Developer",
     file: "/certificate/CertificatoWebDeveloper.pdf",
+    category: "Certificato",
   },
   {
     preview: "/certificate/AWSCertifiedCloudPractitionerPreview.png",
     name: "Certificato AWS Cloud Practitioner",
     file: "/certificate/AWSCertifiedCloudPractitioner.pdf",
+    category: "Certificato",
   },
 ];
 
@@ -75,18 +77,6 @@ export default function Projects() {
         <div className="absolute top-0 left-[3rem] w-px h-full bg-white/5"></div>
         <div className="absolute top-0 right-[3rem] w-px h-full bg-white/5"></div>
 
-        {/* Decorazione laterale ciano */}
-        <div className="absolute left-[3rem] top-1/2 -translate-y-1/2 flex flex-col items-center gap-1">
-          <div className="w-7 h-px bg-cyan-400/50"></div>
-          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]"></div>
-        </div>
-
-        {/* Decorazione laterale rossa */}
-        <div className="absolute right-[3rem] top-1/2 -translate-y-1/2 flex flex-col items-center gap-1">
-          <div className="w-7 h-px bg-[#ee4266]/50"></div>
-          <div className="w-1.5 h-1.5 rounded-full bg-[#ee4266] shadow-[0_0_10px_rgba(238,66,102,0.8)]"></div>
-        </div>
-
         {/* Linea orizzontale sopra la griglia */}
         <div className="absolute top-[23%] left-0 w-full h-px bg-white/5"></div>
 
@@ -94,12 +84,6 @@ export default function Projects() {
         <div className="absolute top-[23%] left-[3rem] -translate-x-1/2 -translate-y-1/2">
           <div className="w-6 h-px bg-white/10"></div>
           <div className="w-px h-6 bg-white/10"></div>
-        </div>
-
-        <div className="absolute right-[3rem] top-1/2 -translate-y-1/2 rotate-90 flex items-center gap-3 text-white/40 text-sm tracking-[0.25em] font-semibold">
-          <span className="h-px w-10 bg-white/10"></span>
-          <span>PORTFOLIO</span>
-          <span className="h-1 w-1 rounded-full bg-white/25"></span>
         </div>
       </div>
 
@@ -125,6 +109,7 @@ export default function Projects() {
           {projects.map((project, idx) => (
             <ProjectCard
               key={idx}
+              category={project.category}
               Img={project.Img}
               title={project.title}
               description={project.description}

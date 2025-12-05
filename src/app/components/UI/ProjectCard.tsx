@@ -6,51 +6,59 @@ interface ProjectCardProps {
   title: string;
   description: string;
   github: string;
+  category: string;
 }
 
-const ProjectCard = ({ Img, title, description, github }: ProjectCardProps) => (
-  <article className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-lg p-1">
-    <div className="overflow-hidden rounded-[26px] bg-black/60">
-      <div className="relative">
-        <div className="relative w-full h-56">
+export default function ProjectCard({
+  Img,
+  title,
+  description,
+  github,
+  category,
+}: ProjectCardProps) {
+  return (
+    <article className="group relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-lg p-1 transition-all duration-300 hover:bg-white/10 hover:shadow-[0_15px_40px_rgba(0,0,0,0.45)]">
+      {/* Inner container */}
+      <div className="rounded-[26px] overflow-hidden bg-black/40">
+        {/* IMAGE */}
+        <div className="relative h-60 overflow-hidden">
           <Image
             src={Img}
             alt={title}
             fill
             className="object-cover opacity-90 transition duration-500 group-hover:scale-105"
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            priority
           />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-        <div className="absolute top-4 left-4 flex gap-3">
-          <span className="tag bg-white/10 text-xs uppercase tracking-[0.2em]">Progetto</span>
-        </div>
-      </div>
 
-      <div className="p-6 space-y-4">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h3 className="text-2xl font-semibold text-white">{title}</h3>
-            <p className="mt-2 text-gray-200 leading-relaxed">{description}</p>
+          {/* CATEGORY BADGE */}
+          <div className="absolute top-4 left-4 px-4 py-1 text-xs font-semibold rounded-full bg-white/20 backdrop-blur-md text-white shadow-md">
+            {category}
           </div>
-          <span className="h-10 w-10 rounded-full bg-gradient-to-br from-orange to-amber-400 opacity-80" />
+
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
         </div>
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-gray-400">Tecnologie: React • Node • AWS</p>
-          <a
-            href={github}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 text-white font-semibold transition-colors hover:text-orange"
-          >
-            GitHub
-            <span className="text-lg">↗</span>
-          </a>
+
+        {/* TEXT CONTENT */}
+        <div className="p-6 space-y-4 text-white">
+          <h3 className="text-2xl font-semibold">{title}</h3>
+
+          <p className="text-gray-200 leading-relaxed">{description}</p>
+
+          <div className="flex items-center justify-between pt-2">
+            <span className="px-3 py-1 text-xs rounded-full bg-white/10 backdrop-blur-md text-white/80">
+              Dettagli
+            </span>
+
+            <a
+              href={github}
+              target="_blank"
+              className="font-semibold text-white hover:text-orange transition-colors"
+            >
+              GitHub ↗
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </article>
-);
-
-export default ProjectCard;
+    </article>
+  );
+}

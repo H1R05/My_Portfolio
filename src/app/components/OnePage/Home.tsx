@@ -54,18 +54,6 @@ export default function Home() {
           <div className="w-px h-6 bg-white/15"></div>
         </div>
 
-        {/* ACCENTO CIANO TECH (DESTRA) */}
-        <div className="absolute right-[1.8rem] top-1/2 -translate-y-1/2 translate-x-6 flex flex-col items-center gap-2">
-          <div className="w-10 h-px bg-cyan-400/60"></div>
-          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_14px_rgba(34,211,238,0.9)]"></div>
-        </div>
-
-        {/* ACCENTO ROSSO TECH (SINISTRA — SPECCHIO) */}
-        <div className="absolute left-[1.8rem] top-1/2 -translate-y-1/2 -translate-x-6 flex flex-col items-center gap-2">
-          <div className="w-10 h-px bg-[#ee4266]/60"></div>
-          <div className="w-1.5 h-1.5 rounded-full bg-[#ee4266] shadow-[0_0_14px_rgba(238,66,102,0.9)]"></div>
-        </div>
-
         {/* Coordinate HUD */}
         <div className="absolute bottom-[12%] right-[3rem] text-[10px] tracking-widest text-white/30 font-mono">
           COORD: 47.29 / 12.6
@@ -88,7 +76,7 @@ export default function Home() {
       whitespace-nowrap
     `}
         >
-          Angel
+          H1R05
         </span>
       </div>
 
@@ -130,7 +118,7 @@ export default function Home() {
               className={`
             ${bebasNeue.className}
             text-[17vw] md:text-[9rem]
-            text-white
+            text-[#ee4266]
             leading-[0.8]
             mb-[0.3em]
           `}

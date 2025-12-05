@@ -5,62 +5,66 @@ interface CertificateCardProps {
   preview: string;
   name: string;
   file: string;
+  category: string;
 }
 
-const CertificateCard: React.FC<CertificateCardProps> = ({
+export default function CertificateCard({
   preview,
   name,
   file,
-}) => {
+  category,
+}: CertificateCardProps) {
   const [showPdf, setShowPdf] = useState(false);
 
   return (
-    <article className="group relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-1 overflow-hidden">
-      <div className="rounded-[26px] overflow-hidden bg-black/60">
-        <div className="relative">
+    <article className="group relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-lg p-1 transition-all duration-300 hover:bg-white/10 hover:shadow-[0_15px_40px_rgba(0,0,0,0.45)]">
+      {/* Inner container */}
+      <div className="rounded-[26px] overflow-hidden bg-black/40">
+        {/* PREVIEW OR PDF */}
+        <div className="relative h-48 cursor-pointer">
           {!showPdf ? (
-            <div className="relative w-full h-44 cursor-pointer" onClick={() => setShowPdf(true)}>
-              <Image
-                src={preview}
-                alt={`Anteprima del certificato ${name}`}
-                fill
-                className="object-cover transition duration-300 group-hover:scale-105"
-                sizes="(min-width: 1024px) 33vw, 100vw"
-                priority
-              />
-            </div>
-          ) : (
-            <iframe
-              src={file}
-              className="w-full h-44 border-0"
-              title={name}
+            <Image
+              src={preview}
+              alt={name}
+              fill
+              className="object-cover opacity-90 transition duration-500 group-hover:scale-105"
+              onClick={() => setShowPdf(true)}
             />
+          ) : (
+            <iframe src={file} className="w-full h-48"></iframe>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-          <div className="absolute top-3 left-3 tag text-[11px]">Certificato</div>
+
+          {/* CATEGORY BADGE */}
+          <div className="absolute top-3 left-3 px-4 py-1 text-xs font-semibold rounded-full bg-white/25 text-white backdrop-blur-md shadow-md">
+            {category}
+          </div>
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
         </div>
 
-        <div className="p-5 space-y-4">
-          <h3 className="text-xl font-semibold text-white">{name}</h3>
+        {/* TEXT CONTENT */}
+        <div className="p-6 space-y-4 text-white">
+          <h3 className="text-xl font-semibold">{name}</h3>
+
           <p className="text-sm text-gray-300">
-            Verifica e scarica il PDF per scoprire il percorso e le competenze validate.
+            Visualizza o scarica il PDF del certificato.
           </p>
+
           <div className="flex items-center justify-between">
-            <span className="tag">PDF</span>
+            <span className="px-3 py-1 text-xs rounded-full bg-white/10 backdrop-blur-md text-white/70">
+              PDF
+            </span>
+
             <a
               href={file}
               target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-white font-semibold hover:text-orange transition-colors"
+              className="font-semibold hover:text-orange transition-colors"
             >
-              {showPdf ? "Scarica" : "Apri"}
-              <span className="text-lg">↗</span>
+              {showPdf ? "Scarica" : "Apri"} ↗
             </a>
           </div>
         </div>
       </div>
     </article>
   );
-};
-
-export default CertificateCard;
+}

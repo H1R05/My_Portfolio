@@ -105,25 +105,6 @@ export default function Contact() {
           <div className="w-6 h-px bg-white/10"></div>
           <div className="w-px h-6 bg-white/10"></div>
         </div>
-
-        {/* Accento ciano laterale */}
-        <div className="absolute left-[3rem] top-1/2 -translate-y-1/2 flex flex-col items-center gap-1">
-          <div className="w-7 h-px bg-cyan-400/50"></div>
-          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]"></div>
-        </div>
-
-        {/* Accento rosso laterale */}
-        <div className="absolute right-[3rem] top-1/2 -translate-y-1/2 flex flex-col items-center gap-1">
-          <div className="w-7 h-px bg-[#ee4266]/50"></div>
-          <div className="w-1.5 h-1.5 rounded-full bg-[#ee4266] shadow-[0_0_10px_rgba(238,66,102,0.8)]"></div>
-        </div>
-
-        {/* Label tech CONTACT */}
-        <div className="absolute right-[3rem] top-1/2 -translate-y-1/2 rotate-90 flex items-center gap-3 text-white/40 text-sm tracking-[0.25em] font-semibold">
-          <span className="h-px w-10 bg-white/10"></span>
-          <span>CONTACT</span>
-          <span className="h-1 w-1 rounded-full bg-white/25"></span>
-        </div>
       </div>
 
       {/* CONTENUTO */}
