@@ -3,13 +3,38 @@
 @tailwind utilities;
 
 /* =============================
-   ANIMAZIONI
+   ANIMAZIONI & UTILITIES
 ============================= */
 @layer utilities {
+  :root {
+    --bg-base: #f7f3ed;
+    --fg-strong: #2f2a24;
+    --fg-soft: #5f564c;
+    --accent: #c6a883;
+    --accent-2: #d9c8b0;
+    --card: rgba(255, 255, 255, 0.7);
+    --border: rgba(47, 42, 36, 0.1);
+  }
+
+  @keyframes floatSoft {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  .animate-float-soft {
+    animation: floatSoft 6s ease-in-out infinite;
+  }
+
   @keyframes fadeUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(18px);
     }
     to {
       opacity: 1;
@@ -17,10 +42,9 @@
     }
   }
   .animate-fade-up {
-    animation: fadeUp 0.6s ease forwards;
+    animation: fadeUp 0.7s ease forwards;
   }
 
-  /* marquee */
   @keyframes marquee {
     from {
       transform: translateX(0);
@@ -29,47 +53,42 @@
       transform: translateX(-50%);
     }
   }
-  @keyframes marquee-reverse {
-    from {
-      transform: translateX(-50%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
   .animate-marquee {
     animation: marquee 22s linear infinite;
   }
-  .animate-marquee-reverse {
-    animation: marquee-reverse 22s linear infinite;
-  }
 
-  /* GRID TECH OVERLAY */
-  .grid-overlay {
-    background-image: linear-gradient(
-        rgba(255, 255, 255, 0.03) 1px,
-        transparent 1px
-      ),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 140px 140px;
-    mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
-  }
-
-  /* GLASS */
   .glass-card {
-    backdrop-filter: blur(20px);
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
   }
 
-  /* TAG */
   .tag {
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--fg-strong);
     padding: 6px 12px;
     font-size: 0.82rem;
     border-radius: 9999px;
     letter-spacing: 0.05em;
+  }
+
+  .soft-shadow {
+    box-shadow: 0 14px 45px rgba(0, 0, 0, 0.08);
+  }
+
+  @media (min-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #d7c4ac, #bda07c);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
   }
 }
 
@@ -79,36 +98,37 @@
 html,
 body {
   scroll-behavior: smooth;
-  background: radial-gradient(
-      circle at 20% 20%,
-      rgba(0, 186, 255, 0.09),
-      transparent 40%
-    ),
-    radial-gradient(circle at 75% 0%, rgba(255, 80, 40, 0.1), transparent 45%),
-    #05070a;
-  color: #e4ecff;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(206, 178, 140, 0.22), transparent 38%),
+    radial-gradient(circle at 82% 12%, rgba(217, 200, 176, 0.18), transparent 40%),
+    linear-gradient(120deg, #faf6ef, #f3ebde, #f9f4ea);
+  color: var(--fg-strong);
 }
 
-/* VIGNETTATURA CINEMATICA */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(
-    circle at center,
-    transparent 65%,
-    rgba(0, 0, 0, 0.55)
-  );
+  background: radial-gradient(circle at center, transparent 70%, rgba(0, 0, 0, 0.08));
   pointer-events: none;
 }
 
-/* NOISE MOLTO SOFT */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   background-image: url("/noise.svg");
   opacity: 0.08;
-  mix-blend-mode: overlay;
+  mix-blend-mode: soft-light;
   pointer-events: none;
+}
+
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(198, 168, 131, 0.35);
+  color: #2f2a24;
 }

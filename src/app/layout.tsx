@@ -15,7 +15,8 @@ export default function RootLayout({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 300);
+    // Keep the loader visible long enough for at least one greeting change
+    const timer = setTimeout(() => setLoading(false), 2400);
     return () => clearTimeout(timer);
   }, []);
   return (

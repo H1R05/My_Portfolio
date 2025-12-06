@@ -17,48 +17,39 @@ export default function CertificateCard({
   const [showPdf, setShowPdf] = useState(false);
 
   return (
-    <article className="group relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-lg p-1 transition-all duration-300 hover:bg-white/10 hover:shadow-[0_15px_40px_rgba(0,0,0,0.45)]">
-      {/* Inner container */}
-      <div className="rounded-[26px] overflow-hidden bg-black/40">
-        {/* PREVIEW OR PDF */}
+    <article className="group relative rounded-3xl border border-[var(--border)] bg-white/85 soft-shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(0,0,0,0.12)]">
+      <div className="overflow-hidden rounded-3xl">
         <div className="relative h-48 cursor-pointer">
           {!showPdf ? (
             <Image
               src={preview}
               alt={name}
               fill
-              className="object-cover opacity-90 transition duration-500 group-hover:scale-105"
+              className="object-cover transition duration-500 group-hover:scale-105"
               onClick={() => setShowPdf(true)}
             />
           ) : (
-            <iframe src={file} className="w-full h-48"></iframe>
+            <iframe src={file} className="w-full h-48" />
           )}
-
-          {/* CATEGORY BADGE */}
-          <div className="absolute top-3 left-3 px-4 py-1 text-xs font-semibold rounded-full bg-white/25 text-white backdrop-blur-md shadow-md">
+          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(247,243,237,0.85)] via-[rgba(247,243,237,0.45)] to-transparent" />
+          <div className="absolute top-3 left-3 px-3 py-1 text-xs font-semibold rounded-full bg-[var(--accent-2)] text-[var(--fg-strong)] shadow-sm">
             {category}
           </div>
-
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
         </div>
 
-        {/* TEXT CONTENT */}
-        <div className="p-6 space-y-4 text-white">
-          <h3 className="text-xl font-semibold">{name}</h3>
-
-          <p className="text-sm text-gray-300">
+        <div className="p-6 space-y-4 text-[var(--fg-strong)]">
+          <h3 className="text-lg font-semibold">{name}</h3>
+          <p className="text-sm text-[var(--fg-soft)] leading-relaxed">
             Visualizza o scarica il PDF del certificato.
           </p>
-
           <div className="flex items-center justify-between">
-            <span className="px-3 py-1 text-xs rounded-full bg-white/10 backdrop-blur-md text-white/70">
+            <span className="px-3 py-1 text-xs rounded-full bg-white/80 border border-[var(--border)] text-[var(--fg-strong)]">
               PDF
             </span>
-
             <a
               href={file}
               target="_blank"
-              className="font-semibold hover:text-orange transition-colors"
+              className="font-semibold text-[var(--fg-strong)] hover:text-[var(--accent)] transition-colors"
             >
               {showPdf ? "Scarica" : "Apri"} ↗
             </a>

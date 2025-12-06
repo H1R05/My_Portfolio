@@ -7,21 +7,13 @@ import { inter, bebasNeue } from "../fonts/permanentMarker";
 export default function Home() {
   const sectionRef = useRef(null);
   const introRef = useRef(null);
-  const cardRef = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(introRef.current, {
-        y: 40,
+        y: 24,
         opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-      });
-      gsap.from(cardRef.current, {
-        x: 40,
-        opacity: 0,
-        duration: 1,
-        delay: 0.2,
+        duration: 0.8,
         ease: "power3.out",
       });
     }, sectionRef);
@@ -32,147 +24,94 @@ export default function Home() {
     <section
       id="home"
       ref={sectionRef}
-      className="relative min-h-screen flex items-center px-6 pt-40 pb-20 overflow-hidden"
+      className={`relative min-h-screen flex items-center px-6 pt-28 pb-40 overflow-hidden ${inter.className}`}
     >
-      {/* BLOB ROSSO */}
-      <div className="absolute right-[5%] top-[0%] h-[24rem] w-[24rem] rounded-full bg-[#ee4266] blur-[150px] opacity-40"></div>
-
-      {/* BLOB CIANO */}
-      <div className="absolute left-[-5%] bottom-[-5%] h-[28rem] w-[28rem] rounded-full bg-cyan-400 blur-[170px] opacity-40"></div>
-
-      {/* HUD + BACKGROUND TYPO */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-        {/* Riga orizzontale tech */}
-        <div className="absolute top-[32%] left-0 w-full h-px bg-white/5"></div>
-
-        {/* Riga verticale tech */}
-        <div className="absolute top-[32%] left-[3.5rem] h-[45%] w-px bg-white/5"></div>
-
-        {/* Corner HUD */}
-        <div className="absolute top-[32%] left-[3.5rem] -translate-x-1/2 -translate-y-1/2">
-          <div className="w-6 h-px bg-white/15"></div>
-          <div className="w-px h-6 bg-white/15"></div>
-        </div>
-
-        {/* Coordinate HUD */}
-        <div className="absolute bottom-[12%] right-[3rem] text-[10px] tracking-widest text-white/30 font-mono">
-          COORD: 47.29 / 12.6
-        </div>
-
-        {/* Background Typo: CODE */}
+        <div className="absolute right-[10%] top-[4%] h-[22rem] w-[22rem] rounded-full bg-[rgba(217,200,176,0.35)] blur-[160px]" />
+        <div className="absolute left-[-10%] bottom-[-12%] h-[30rem] w-[30rem] rounded-full bg-[rgba(198,168,131,0.28)] blur-[200px]" />
+        <div className="absolute inset-x-0 top-[32%] h-px bg-[rgba(47,42,36,0.08)]" />
+        <div className="absolute left-[3rem] top-[32%] h-[52%] w-px bg-[rgba(47,42,36,0.08)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.55),transparent_38%),radial-gradient(circle_at_80%_80%,rgba(255,255,255,0.4),transparent_42%)] opacity-30" />
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-[rgba(247,243,237,0.6)] to-[rgba(247,243,237,1)]" />
         <span
-          className={`
-      ${bebasNeue.className}
-      absolute
-      right-[2.5rem]
-      top-1/2
-      -translate-y-1/2
-      rotate-90
-      text-white/5
-      font-bold
-      leading-none
-      text-[25vw] md:text-[14rem]
-      tracking-[0.2em]
-      whitespace-nowrap
-    `}
+          className={`${bebasNeue.className} absolute right-[3%] top-1/2 -translate-y-1/2 rotate-90 text-[var(--fg-soft)]/10 font-bold leading-none text-[22vw] md:text-[12rem] tracking-[0.25em] whitespace-nowrap`}
         >
           H1R05
         </span>
       </div>
 
       {/* CONTENUTO */}
-      <div className="relative z-10 max-w-6xl mx-auto w-full">
-        {/* TITOLO */}
-        <h1 className="font-bold leading-[0.8] text-left space-y-3">
-          {/* Lineetta tech + Ciao */}
-          <div className="flex items-center gap-3">
-            <div className="h-px w-8 bg-white/30"></div>
-            <span
-              className={`${bebasNeue.className} text-5xl md:text-6xl text-gray-300 tracking-wide`}
+      <div className="relative z-10 max-w-5xl mx-auto w-full">
+        <div className="max-w-4xl">
+          <div ref={introRef} className="space-y-12">
+            <div className="flex items-center gap-3 text-base uppercase tracking-[0.3em] text-[var(--fg-soft)]">
+              <div className="h-px w-10 bg-[rgba(47,42,36,0.2)]" />
+              <span>Cloud / Full-Stack / UI</span>
+            </div>
+
+            <div className="space-y-5">
+              <h1
+                className={`${bebasNeue.className} text-6xl md:text-7xl lg:text-8xl leading-[0.9] text-[var(--fg-strong)]`}
+              >
+                Ciao, sono{" "}
+                <span className="bg-gradient-to-r from-[var(--fg-strong)] via-[var(--accent)] to-[var(--fg-strong)] bg-clip-text text-transparent">
+                  Samu
+                </span>
+                .
+              </h1>
+              <p
+                className={`${inter.className} text-xl md:text-2xl lg:text-[1.5rem] text-[var(--fg-soft)] leading-relaxed max-w-4xl`}
+              >
+                Costruisco esperienze digitali essenziali e veloci: architetture
+                cloud robuste, interfacce pulite e dettagli curati per prodotti
+                che performano davvero.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4 md:gap-6">
+              <a
+                href="#portfolio"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--fg-strong)] text-[var(--bg-base)] text-base font-semibold shadow-[0_12px_30px_rgba(0,0,0,0.1)] hover:-translate-y-[2px] transition-all"
+              >
+                Esplora i progetti ↗
+              </a>
+              <a
+                href="/cvDocument/CVSamu.pdf"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border)] text-[var(--fg-strong)] text-base hover:border-[var(--fg-soft)] transition-colors"
+              >
+                Scarica CV
+              </a>
+            </div>
+
+            <p
+              className={`${inter.className} text-base md:text-lg text-[var(--fg-soft)] leading-relaxed max-w-3xl`}
             >
-              CIAO,
-            </span>
+              Appassionato di tipografia chiara, layout ariosi e transizioni
+              morbide: porto un mix di rigore tecnico e sensibilità visiva per
+              dare forma a prodotti moderni.
+            </p>
+
+            <div className="flex gap-5 text-2xl text-[var(--fg-strong)]">
+              <a
+                href="https://github.com/H1R05"
+                className="hover:text-[var(--accent)] transition-colors"
+              >
+                <FaGithub />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/samuele-angelicchio-639927363/"
+                className="hover:text-[var(--accent)] transition-colors"
+              >
+                <CiLinkedin />
+              </a>
+              <a
+                href="https://www.instagram.com/angelicchio_samuele/"
+                className="hover:text-[var(--accent)] transition-colors"
+              >
+                <FaInstagram />
+              </a>
+            </div>
           </div>
-
-          {/* MI CHIAMO */}
-          <span
-            className={`${bebasNeue.className} block text-7xl md:text-8xl text-white tracking-tight`}
-          >
-            MI CHIAMO
-          </span>
-
-          {/* SA / MU */}
-          <div className="flex items-end gap-4">
-            <span
-              className={`
-            ${bebasNeue.className}
-            text-[20vw] md:text-[11rem]
-            text-[#ee4266]
-            leading-[0.8]
-          `}
-            >
-              SA
-            </span>
-
-            <span
-              className={`
-            ${bebasNeue.className}
-            text-[17vw] md:text-[9rem]
-            text-[#ee4266]
-            leading-[0.8]
-            mb-[0.3em]
-          `}
-            >
-              MU
-            </span>
-          </div>
-        </h1>
-
-        {/* DESCRIZIONE */}
-        <p
-          className={`${inter.className} text-xl md:text-2xl text-gray-300 max-w-xl mt-12`}
-        >
-          Sviluppatore Cloud & Full-Stack. Costruisco interfacce moderne, pulite
-          e ad alte prestazioni.
-        </p>
-
-        {/* BOTTONI */}
-        <div className="flex flex-wrap gap-6 items-center mt-12">
-          <a
-            href="#portfolio"
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white text-slate-900 text-lg font-semibold shadow-[0_15px_40px_rgba(255,255,255,0.2)] hover:-translate-y-[2px] transition-all"
-          >
-            Esplora i progetti ↗
-          </a>
-
-          <a
-            href="/cvDocument/CVSamu.pdf"
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-white/20 text-white text-lg hover:border-white/60 transition-colors"
-          >
-            Scarica CV
-          </a>
-        </div>
-
-        {/* SOCIAL */}
-        <div className="flex gap-6 text-3xl text-white mt-12">
-          <a
-            href="https://github.com/H1R05"
-            className="hover:text-[#ee4266] transition-colors"
-          >
-            <FaGithub />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/samuele-angelicchio-639927363/"
-            className="hover:text-[#ee4266] transition-colors"
-          >
-            <CiLinkedin />
-          </a>
-          <a
-            href="https://www.instagram.com/angelicchio_samuele/"
-            className="hover:text-[#ee4266] transition-colors"
-          >
-            <FaInstagram />
-          </a>
         </div>
       </div>
     </section>

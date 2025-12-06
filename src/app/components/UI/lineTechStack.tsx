@@ -36,23 +36,18 @@ const techStack: TechStackItem[] = [
 
 export default function TechStackTicker() {
   return (
-    <div className="relative w-full overflow-hidden">
-      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black to-transparent z-10"></div>
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black to-transparent z-10"></div>
-      <div className="flex animate-marquee whitespace-nowrap">
-        {techStack.concat(techStack).map((item, idx) => (
-          <div key={idx} className="flex flex-col items-center mx-4 mt-2">
-            <item.Icon className="h-8 w-8 hover:scale-110 transition" />
-            <span className="text-sm">{item.name}</span>
-          </div>
-        ))}
-      </div>
+    <div className="relative w-full overflow-hidden py-3">
+      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[rgba(247,243,237,1)] to-transparent z-10" />
+      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[rgba(247,243,237,1)] to-transparent z-10" />
 
-      <div className="flex animate-marquee-reverse whitespace-nowrap mt-8">
+      <div className="flex animate-marquee whitespace-nowrap gap-6">
         {techStack.concat(techStack).map((item, idx) => (
-          <div key={idx} className="flex flex-col items-center mx-4 mt-2">
-            <item.Icon className="h-8 w-8 hover:scale-110 transition" />
-            <span className="text-sm">{item.name}</span>
+          <div
+            key={idx}
+            className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] bg-white/85 text-[var(--fg-strong)] text-sm shadow-[0_10px_30px_rgba(0,0,0,0.06)]"
+          >
+            <item.Icon className="h-5 w-5 text-[var(--accent)]" />
+            <span>{item.name}</span>
           </div>
         ))}
       </div>

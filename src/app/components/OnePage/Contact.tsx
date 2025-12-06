@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import gsap, { ScrollTrigger } from "gsap/all";
-import { useLayoutEffect, useRef } from "react";
-gsap.registerPlugin(ScrollTrigger);
+import { bebasNeue, inter } from "../fonts/permanentMarker";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -18,6 +17,9 @@ export default function Contact() {
   const sectionRef = useRef(null);
 
   useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    gsap.registerPlugin(ScrollTrigger);
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -84,57 +86,41 @@ export default function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden"
+      className={`relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden ${inter.className}`}
     >
-      {/* PATTERN TECH UNIFICATO */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-        {/* Mini blur SX (ciano) */}
-        <div className="absolute left-[-5%] top-[15%] h-[12rem] w-[12rem] rounded-full bg-cyan-400 blur-[150px] opacity-15"></div>
-
-        {/* Mini blur DX (rosso) */}
-        <div className="absolute right-[-5%] bottom-[15%] h-[12rem] w-[12rem] rounded-full bg-[#ee4266] blur-[150px] opacity-15"></div>
-
-        {/* Linea HUD orizzontale – STESSA DI HOME / ABOUT / PORTFOLIO */}
-        <div className="absolute top-[22%] left-0 w-full h-px bg-white/5"></div>
-
-        {/* Linea HUD verticale – STESSA DISTANZA */}
-        <div className="absolute top-[22%] left-[3rem] h-[45%] w-px bg-white/5"></div>
-
-        {/* Corner HUD – ALLINEATO A 22% */}
-        <div className="absolute top-[22%] left-[3rem] -translate-x-1/2 -translate-y-1/2">
-          <div className="w-6 h-px bg-white/10"></div>
-          <div className="w-px h-6 bg-white/10"></div>
-        </div>
+        <div className="absolute left-[-6%] top-[15%] h-[15rem] w-[15rem] rounded-full bg-[rgba(198,168,131,0.25)] blur-[160px]" />
+        <div className="absolute right-[-6%] bottom-[15%] h-[15rem] w-[15rem] rounded-full bg-[rgba(217,200,176,0.22)] blur-[160px]" />
+        <div className="absolute inset-x-0 top-[24%] h-px bg-[rgba(47,42,36,0.08)]" />
+        <div className="absolute left-[3rem] top-[24%] h-[55%] w-px bg-[rgba(47,42,36,0.08)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.45),transparent_38%),radial-gradient(circle_at_80%_75%,rgba(255,255,255,0.35),transparent_42%)] opacity-30" />
       </div>
 
       {/* CONTENUTO */}
-      <div className="relative z-10 max-w-5xl w-full grid gap-10 lg:grid-cols-[0.85fr_1.15fr] items-center">
-        {/* INFO */}
-        <div className="glass-card rounded-3xl p-8 border border-white/10 space-y-6">
-          <p className="text-sm uppercase tracking-[0.25em] text-gray-400">
+      <div className="relative z-10 max-w-6xl w-full grid gap-10 lg:grid-cols-[1fr_1fr] items-start">
+        <div className="space-y-6">
+          <p className="text-sm uppercase tracking-[0.25em] text-[var(--fg-soft)]">
             Parliamo del tuo prossimo progetto
           </p>
-          <h2 className="text-4xl font-semibold text-white leading-tight">
-            Dimmi di cosa hai bisogno e realizzeremo qualcosa di essenziale e
-            performante.
+          <h2
+            className={`${bebasNeue.className} text-5xl md:text-6xl text-[var(--fg-strong)] leading-[0.95]`}
+          >
+            Dimmi di cosa hai bisogno e realizzeremo qualcosa di essenziale e performante.
           </h2>
-          <p className="text-lg text-gray-200 leading-relaxed">
-            Che si tratti di ottimizzare un flusso cloud, creare un design
-            system o sviluppare una nuova esperienza web, posso aiutarti a
-            trasformare l&apos;idea in un progetto solido.
+          <p className="text-lg md:text-xl text-[var(--fg-soft)] leading-relaxed">
+            Che si tratti di ottimizzare un flusso cloud, creare un design system o sviluppare una
+            nuova esperienza web, posso aiutarti a trasformare l&apos;idea in un progetto solido.
           </p>
-
-          <div className="space-y-3 text-gray-200">
+          <div className="space-y-3 text-[var(--fg-soft)]">
             <div className="flex items-center gap-3">
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
               <p>Disponibile per collaborazioni remote • CET</p>
             </div>
-
             <div className="flex items-center gap-3">
               <span className="tag">Email preferita</span>
               <a
                 href="mailto:angelicchio.samuele2004@gmail.com"
-                className="text-white font-semibold hover:text-orange"
+                className="text-[var(--fg-strong)] font-semibold hover:text-[var(--accent)]"
               >
                 angelicchio.samuele2004@gmail.com
               </a>
@@ -142,84 +128,73 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* FORM */}
         <form
           onSubmit={handleSubmit}
-          className="glass-card rounded-3xl p-8 border border-white/10 shadow-2xl"
+          className="glass-card rounded-3xl p-8 border border-[var(--border)] shadow-[0_20px_60px_rgba(0,0,0,0.08)] space-y-5"
         >
-          <div className="grid gap-5">
-            <div className="grid gap-2">
-              <label className="text-sm uppercase tracking-[0.2em] text-gray-400">
-                Nome
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="Il tuo nome completo"
-                required
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange"
-              />
-            </div>
-
-            <div className="grid gap-2">
-              <label className="text-sm uppercase tracking-[0.2em] text-gray-400">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="nome.cognome@esempio.it"
-                required
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange"
-              />
-            </div>
-
-            <div className="grid gap-2">
-              <label className="text-sm uppercase tracking-[0.2em] text-gray-400">
-                Messaggio
-              </label>
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                placeholder="Raccontami cosa vorresti realizzare"
-                required
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange h-32 resize-none"
-              />
-            </div>
-
+          <div className="grid gap-2">
+            <label className="text-sm uppercase tracking-[0.2em] text-[var(--fg-soft)]">Nome</label>
             <input
               type="text"
-              name="honeypot"
-              value={form.honeypot}
+              name="name"
+              value={form.name}
               onChange={handleChange}
-              className="hidden"
-              tabIndex={-1}
-              autoComplete="off"
+              placeholder="Il tuo nome completo"
+              required
+              className="w-full px-4 py-3 rounded-xl bg-white/80 border border-[var(--border)] text-[var(--fg-strong)] placeholder-[var(--fg-soft)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/40"
             />
-
-            {error && <p className="text-red-400 text-sm">{error}</p>}
-            {success && (
-              <p className="text-emerald-400 text-sm">
-                Messaggio inviato con successo!
-              </p>
-            )}
-
-            <button
-              type="submit"
-              disabled={loading || success}
-              className={`inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange to-amber-400 text-blue-900 font-semibold w-full py-3 rounded-xl shadow-[0_10px_30px_rgba(255,149,5,0.35)] transition-transform duration-200 hover:scale-[1.01] disabled:opacity-50 ${
-                success ? "bg-green-400 text-green-900" : ""
-              }`}
-            >
-              {loading ? "Invio..." : success ? "Inviato" : "Invia messaggio"}
-              <span className="text-lg">↗</span>
-            </button>
           </div>
+
+          <div className="grid gap-2">
+            <label className="text-sm uppercase tracking-[0.2em] text-[var(--fg-soft)]">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="nome.cognome@esempio.it"
+              required
+              className="w-full px-4 py-3 rounded-xl bg-white/80 border border-[var(--border)] text-[var(--fg-strong)] placeholder-[var(--fg-soft)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/40"
+            />
+          </div>
+
+          <div className="grid gap-2">
+            <label className="text-sm uppercase tracking-[0.2em] text-[var(--fg-soft)]">
+              Messaggio
+            </label>
+            <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              placeholder="Raccontami cosa vorresti realizzare"
+              required
+              className="w-full px-4 py-3 rounded-xl bg-white/80 border border-[var(--border)] text-[var(--fg-strong)] placeholder-[var(--fg-soft)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/40 h-32 resize-none"
+            />
+          </div>
+
+          <input
+            type="text"
+            name="honeypot"
+            value={form.honeypot}
+            onChange={handleChange}
+            className="hidden"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+
+          {error && <p className="text-red-400 text-sm">{error}</p>}
+          {success && <p className="text-emerald-600 text-sm">Messaggio inviato con successo!</p>}
+
+          <button
+            type="submit"
+            disabled={loading || success}
+            className={`inline-flex items-center justify-center gap-2 bg-[var(--fg-strong)] text-[var(--bg-base)] font-semibold w-full py-3 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-transform duration-200 hover:scale-[1.01] disabled:opacity-50 ${
+              success ? "bg-emerald-300 text-emerald-900" : ""
+            }`}
+          >
+            {loading ? "Invio..." : success ? "Inviato" : "Invia messaggio"}
+            <span className="text-lg">↗</span>
+          </button>
         </form>
       </div>
     </section>

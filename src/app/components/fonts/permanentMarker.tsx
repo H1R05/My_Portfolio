@@ -1,21 +1,15 @@
-import { Inter } from "next/font/google";
-import { Work_Sans } from "next/font/google";
-import { Bebas_Neue } from "next/font/google";
+import { Inter, Bebas_Neue } from "next/font/google";
 
 export const inter = Inter({
   subsets: ["latin"],
-  weight: "800",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
   variable: "--font-body",
 });
 
 export const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
+  display: "swap",
   variable: "--font-title",
-});
-
-export const workSans = Work_Sans({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-subTitle",
 });

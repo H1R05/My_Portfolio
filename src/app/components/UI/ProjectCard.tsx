@@ -17,42 +17,32 @@ export default function ProjectCard({
   category,
 }: ProjectCardProps) {
   return (
-    <article className="group relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-lg p-1 transition-all duration-300 hover:bg-white/10 hover:shadow-[0_15px_40px_rgba(0,0,0,0.45)]">
-      {/* Inner container */}
-      <div className="rounded-[26px] overflow-hidden bg-black/40">
-        {/* IMAGE */}
-        <div className="relative h-60 overflow-hidden">
+    <article className="group relative rounded-3xl border border-[var(--border)] bg-white/85 soft-shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(0,0,0,0.12)]">
+      <div className="overflow-hidden rounded-3xl">
+        <div className="relative h-56 overflow-hidden">
           <Image
             src={Img}
             alt={title}
             fill
-            className="object-cover opacity-90 transition duration-500 group-hover:scale-105"
+            className="object-cover transition duration-500 group-hover:scale-105"
           />
-
-          {/* CATEGORY BADGE */}
-          <div className="absolute top-4 left-4 px-4 py-1 text-xs font-semibold rounded-full bg-white/20 backdrop-blur-md text-white shadow-md">
+          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(247,243,237,0.9)] via-[rgba(247,243,237,0.4)] to-transparent" />
+          <div className="absolute top-3 left-3 px-3 py-1 text-xs font-semibold rounded-full bg-[var(--accent-2)] text-[var(--fg-strong)] shadow-sm">
             {category}
           </div>
-
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
         </div>
 
-        {/* TEXT CONTENT */}
-        <div className="p-6 space-y-4 text-white">
-          <h3 className="text-2xl font-semibold">{title}</h3>
-
-          <p className="text-gray-200 leading-relaxed">{description}</p>
-
+        <div className="p-6 space-y-3 text-[var(--fg-strong)]">
+          <h3 className="text-xl font-semibold">{title}</h3>
+          <p className="text-[var(--fg-soft)] leading-relaxed text-sm">{description}</p>
           <div className="flex items-center justify-between pt-2">
-            <span className="px-3 py-1 text-xs rounded-full bg-white/10 backdrop-blur-md text-white/80">
+            <span className="px-3 py-1 text-xs rounded-full bg-white/80 border border-[var(--border)] text-[var(--fg-strong)]">
               Dettagli
             </span>
-
             <a
               href={github}
               target="_blank"
-              className="font-semibold text-white hover:text-orange transition-colors"
+              className="font-semibold text-[var(--fg-strong)] hover:text-[var(--accent)] transition-colors"
             >
               GitHub ↗
             </a>
