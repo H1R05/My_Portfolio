@@ -1,3 +1,5 @@
+"use client";
+
 import ProjectCard from "../UI/ProjectCard";
 import TechStackTicker from "../UI/lineTechStack";
 import CertificateCard from "../UI/CertificateCard";
@@ -21,70 +23,18 @@ const projects = [
     github: "https://github.com/H1R05/SamuApp",
     category: "Progetto",
   },
-  {
-    Img: "/project/sitoPortfolio.png",
-    title: "Modern Web Portfolio",
-    description: "Portfolio personale moderno che mi rappresenta",
-    github: "https://github.com/H1R05/SamuApp",
-    category: "Progetto",
-  },
-  {
-    Img: "/project/sitoPortfolio.png",
-    title: "Modern Web Portfolio",
-    description: "Portfolio personale moderno che mi rappresenta",
-    github: "https://github.com/H1R05/SamuApp",
-    category: "Progetto",
-  },
-  {
-    Img: "/project/sitoPortfolio.png",
-    title: "Modern Web Portfolio",
-    description: "Portfolio personale moderno che mi rappresenta",
-    github: "https://github.com/H1R05/SamuApp",
-    category: "Progetto",
-  },
-  {
-    Img: "/project/sitoPortfolio.png",
-    title: "Modern Web Portfolio",
-    description: "Portfolio personale moderno che mi rappresenta",
-    github: "https://github.com/H1R05/SamuApp",
-    category: "Progetto",
-  },
 ];
 const certificates = [
   {
-    preview: "/certificate/CertificatoWebDeveloperPreview.png",
-    name: "Certificato Web Developer",
-    file: "/certificate/CertificatoWebDeveloper.pdf",
+    Img: "/certificate/CertificatoWebDeveloperPreview.png",
+    title: "Certificato Web Developer",
+    link: "/certificate/CertificatoWebDeveloper.pdf",
     category: "Certificato",
   },
   {
-    preview: "/certificate/AWSCertifiedCloudPractitionerPreview.png",
-    name: "Certificato AWS Cloud Practitioner",
-    file: "/certificate/AWSCertifiedCloudPractitioner.pdf",
-    category: "Certificato",
-  },
-  {
-    preview: "/certificate/AWSCertifiedCloudPractitionerPreview.png",
-    name: "Certificato AWS Cloud Practitioner",
-    file: "/certificate/AWSCertifiedCloudPractitioner.pdf",
-    category: "Certificato",
-  },
-  {
-    preview: "/certificate/AWSCertifiedCloudPractitionerPreview.png",
-    name: "Certificato AWS Cloud Practitioner",
-    file: "/certificate/AWSCertifiedCloudPractitioner.pdf",
-    category: "Certificato",
-  },
-  {
-    preview: "/certificate/AWSCertifiedCloudPractitionerPreview.png",
-    name: "Certificato AWS Cloud Practitioner",
-    file: "/certificate/AWSCertifiedCloudPractitioner.pdf",
-    category: "Certificato",
-  },
-  {
-    preview: "/certificate/AWSCertifiedCloudPractitionerPreview.png",
-    name: "Certificato AWS Cloud Practitioner",
-    file: "/certificate/AWSCertifiedCloudPractitioner.pdf",
+    Img: "/certificate/AWSCertifiedCloudPractitionerPreview.png",
+    title: "Certificato AWS Cloud Practitioner",
+    link: "/certificate/AWSCertifiedCloudPractitioner.pdf",
     category: "Certificato",
   },
 ];
@@ -135,41 +85,61 @@ export default function Projects() {
     const el = projectsRef.current;
     if (!el || typeof ResizeObserver === "undefined") return;
 
+    let frame = 0;
+
     const measure = () => {
-      const fullHeight = el.scrollHeight;
-      const target = projectsExpanded
-        ? fullHeight
-        : Math.min(fullHeight, PROJECTS_COLLAPSED);
-      setProjectsHeight(target);
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const fullHeight = el.scrollHeight;
+        const target = projectsExpanded
+          ? fullHeight
+          : Math.min(fullHeight, PROJECTS_COLLAPSED);
+        setProjectsHeight(target);
+      });
     };
 
     measure();
 
     const observer = new ResizeObserver(measure);
     observer.observe(el);
+    window.addEventListener("resize", measure);
 
-    return () => observer.disconnect();
-  }, [projectsExpanded]);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [projectsExpanded, PROJECTS_COLLAPSED]);
 
   useLayoutEffect(() => {
     const el = certificatesRef.current;
     if (!el || typeof ResizeObserver === "undefined") return;
 
+    let frame = 0;
+
     const measure = () => {
-      const fullHeight = el.scrollHeight;
-      const target = certsExpanded
-        ? fullHeight
-        : Math.min(fullHeight, CERTS_COLLAPSED);
-      setCertsHeight(target);
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const fullHeight = el.scrollHeight;
+        const target = certsExpanded
+          ? fullHeight
+          : Math.min(fullHeight, CERTS_COLLAPSED);
+        setCertsHeight(target);
+      });
     };
 
     measure();
 
     const observer = new ResizeObserver(measure);
     observer.observe(el);
+    window.addEventListener("resize", measure);
 
-    return () => observer.disconnect();
-  }, [certsExpanded]);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [certsExpanded, CERTS_COLLAPSED]);
 
   return (
     <section
@@ -208,7 +178,7 @@ export default function Projects() {
           <div
             ref={projectsRef}
             style={{
-              maxHeight: `${projectsHeight}px`,
+              maxHeight: projectsHeight,
               maskImage: projectsExpanded ? maskExpanded : maskCollapsed,
               WebkitMaskImage: projectsExpanded ? maskExpanded : maskCollapsed,
               maskSize: "100% 100%",
@@ -216,7 +186,7 @@ export default function Projects() {
               maskRepeat: "no-repeat",
               WebkitMaskRepeat: "no-repeat",
             }}
-            className="relative grid gap-6 md:grid-cols-2 overflow-hidden transition-[max-height] duration-[640ms] ease-[cubic-bezier(0.33,1,0.68,1)] will-change-[max-height]"
+            className="relative grid gap-6 md:grid-cols-2 overflow-hidden transition-[max-height] duration-[520ms] ease-[cubic-bezier(0.4,0,0.2,1)] will-change-[max-height]"
           >
             {projects.map((project, idx) => (
               <ProjectCard
@@ -283,7 +253,7 @@ export default function Projects() {
             <div
               ref={certificatesRef}
               style={{
-                maxHeight: `${certsHeight}px`,
+                maxHeight: certsHeight,
                 maskImage: certsExpanded ? maskExpanded : maskCollapsed,
                 WebkitMaskImage: certsExpanded ? maskExpanded : maskCollapsed,
                 maskSize: "100% 100%",
@@ -291,7 +261,7 @@ export default function Projects() {
                 maskRepeat: "no-repeat",
                 WebkitMaskRepeat: "no-repeat",
               }}
-              className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-hidden transition-[max-height] duration-[640ms] ease-[cubic-bezier(0.33,1,0.68,1)] will-change-[max-height]"
+              className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-hidden transition-[max-height] duration-[520ms] ease-[cubic-bezier(0.4,0,0.2,1)] will-change-[max-height]"
             >
               {certificates.map((cert, idx) => (
                 <CertificateCard key={idx} {...cert} />

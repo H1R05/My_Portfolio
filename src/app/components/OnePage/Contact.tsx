@@ -91,31 +91,28 @@ export default function Contact() {
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
         <div className="absolute left-[-6%] top-[15%] h-[15rem] w-[15rem] rounded-full bg-[rgba(198,168,131,0.25)] blur-[160px]" />
         <div className="absolute right-[-6%] bottom-[15%] h-[15rem] w-[15rem] rounded-full bg-[rgba(217,200,176,0.22)] blur-[160px]" />
-        <div className="absolute inset-x-0 top-[24%] h-px bg-[rgba(47,42,36,0.08)]" />
-        <div className="absolute left-[3rem] top-[24%] h-[55%] w-px bg-[rgba(47,42,36,0.08)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.45),transparent_38%),radial-gradient(circle_at_80%_75%,rgba(255,255,255,0.35),transparent_42%)] opacity-30" />
       </div>
 
       {/* CONTENUTO */}
       <div className="relative z-10 max-w-6xl w-full grid gap-10 lg:grid-cols-[1fr_1fr] items-start">
         <div className="space-y-6">
-          <p className="text-sm uppercase tracking-[0.25em] text-[var(--fg-soft)]">
-            Parliamo del tuo prossimo progetto
-          </p>
+          <div className="about-fade flex items-center gap-3 text-base uppercase tracking-[0.3em] text-[var(--fg-soft)]">
+            <div className="h-px w-10 bg-[rgba(47,42,36,0.2)]" />
+            <span>Contatti</span>
+          </div>
           <h2
             className={`${bebasNeue.className} text-5xl md:text-6xl text-[var(--fg-strong)] leading-[0.95]`}
           >
-            Dimmi di cosa hai bisogno e realizzeremo qualcosa di essenziale e performante.
+            Dimmi di cosa hai bisogno e realizzeremo qualcosa di essenziale e
+            performante.
           </h2>
           <p className="text-lg md:text-xl text-[var(--fg-soft)] leading-relaxed">
-            Che si tratti di ottimizzare un flusso cloud, creare un design system o sviluppare una
-            nuova esperienza web, posso aiutarti a trasformare l&apos;idea in un progetto solido.
+            Che si tratti di ottimizzare un flusso cloud, creare un design
+            system o sviluppare una nuova esperienza web, posso aiutarti a
+            trasformare l&apos;idea in un progetto solido.
           </p>
           <div className="space-y-3 text-[var(--fg-soft)]">
-            <div className="flex items-center gap-3">
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
-              <p>Disponibile per collaborazioni remote • CET</p>
-            </div>
             <div className="flex items-center gap-3">
               <span className="tag">Email preferita</span>
               <a
@@ -133,7 +130,9 @@ export default function Contact() {
           className="glass-card rounded-3xl p-8 border border-[var(--border)] shadow-[0_20px_60px_rgba(0,0,0,0.08)] space-y-5"
         >
           <div className="grid gap-2">
-            <label className="text-sm uppercase tracking-[0.2em] text-[var(--fg-soft)]">Nome</label>
+            <label className="text-sm uppercase tracking-[0.2em] text-[var(--fg-soft)]">
+              Nome
+            </label>
             <input
               type="text"
               name="name"
@@ -146,7 +145,9 @@ export default function Contact() {
           </div>
 
           <div className="grid gap-2">
-            <label className="text-sm uppercase tracking-[0.2em] text-[var(--fg-soft)]">Email</label>
+            <label className="text-sm uppercase tracking-[0.2em] text-[var(--fg-soft)]">
+              Email
+            </label>
             <input
               type="email"
               name="email"
@@ -183,7 +184,11 @@ export default function Contact() {
           />
 
           {error && <p className="text-red-400 text-sm">{error}</p>}
-          {success && <p className="text-emerald-600 text-sm">Messaggio inviato con successo!</p>}
+          {success && (
+            <p className="text-emerald-600 text-sm">
+              Messaggio inviato con successo!
+            </p>
+          )}
 
           <button
             type="submit"

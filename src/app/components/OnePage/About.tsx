@@ -1,3 +1,5 @@
+"use client";
+
 import gsap, { ScrollTrigger } from "gsap/all";
 import { useLayoutEffect, useRef, useState } from "react";
 import { bebasNeue, inter } from "../fonts/permanentMarker";
@@ -16,15 +18,9 @@ const highlights = [
 const experiences = [
   {
     period: "2024 — presente",
-    role: "Full‑stack & Cloud",
+    role: "Full-stack & Cloud",
     place: "Progetti personali e studio",
     desc: "Next.js, architetture cloud ottimizzate, pipeline CI/CD e componenti riutilizzabili.",
-  },
-  {
-    period: "2023",
-    role: "Formazione tecnica",
-    place: "Certificazioni & corsi",
-    desc: "Approfondimenti su AWS, sicurezza e design system per prodotti scalabili.",
   },
   {
     period: "2023",
@@ -54,16 +50,19 @@ const experiences = [
 
 export default function About() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const collapsedHeight = 360;
-  const [expanded, setExpanded] = useState(false);
   const timelineRef = useRef<HTMLDivElement | null>(null);
-  const [maxHeight, setMaxHeight] = useState(360);
+  const [expanded, setExpanded] = useState(false);
   const toggleLabel = expanded ? "Riduci il percorso" : "Espandi il percorso";
+
   const maskCollapsed =
     "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0.6) 85%, rgba(0,0,0,0) 100%)";
+
   const maskExpanded =
     "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 92%, rgba(0,0,0,0.9) 100%)";
 
+  // -------------------------------------------------------
+  // GSAP ScrollTrigger fade-in
+  // -------------------------------------------------------
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
     gsap.registerPlugin(ScrollTrigger);
@@ -81,27 +80,25 @@ export default function About() {
         },
       });
     }, sectionRef);
+
     return () => ctx.revert();
   }, []);
 
+  // -------------------------------------------------------
+  // GSAP Expand/Collapse – ULTRA FLUID
+  // -------------------------------------------------------
   useLayoutEffect(() => {
     const el = timelineRef.current;
-    if (!el || typeof ResizeObserver === "undefined") return;
+    if (!el) return;
 
-    const measure = () => {
-      const fullHeight = el.scrollHeight;
-      const targetHeight = expanded
-        ? fullHeight
-        : Math.min(fullHeight, collapsedHeight);
-      setMaxHeight(targetHeight);
-    };
+    const full = el.scrollHeight;
+    const collapsed = 360;
 
-    measure();
-
-    const observer = new ResizeObserver(measure);
-    observer.observe(el);
-
-    return () => observer.disconnect();
+    gsap.to(el, {
+      height: expanded ? full : collapsed,
+      duration: 0.6,
+      ease: "power3.inOut",
+    });
   }, [expanded]);
 
   return (
@@ -110,14 +107,14 @@ export default function About() {
       id="about"
       className={`relative min-h-screen flex items-center justify-center px-6 pt-56 pb-32 overflow-hidden mt-[-6rem] scroll-mt-32 ${inter.className}`}
     >
+      {/* BACKGROUND DECORATIONS */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
         <div className="absolute right-[6%] top-[10%] h-[18rem] w-[18rem] rounded-full bg-[rgba(217,200,176,0.26)] blur-[160px]" />
         <div className="absolute left-[-6%] bottom-[-10%] h-[26rem] w-[26rem] rounded-full bg-[rgba(198,168,131,0.22)] blur-[180px]" />
-        <div className="absolute inset-x-0 top-[32%] h-px bg-[rgba(47,42,36,0.08)]" />
-        <div className="absolute left-[3rem] top-[32%] h-[50%] w-px bg-[rgba(47,42,36,0.08)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.45),transparent_38%),radial-gradient(circle_at_80%_75%,rgba(255,255,255,0.35),transparent_42%)] opacity-30" />
       </div>
 
+      {/* CONTENT */}
       <div className="relative z-10 max-w-6xl mx-auto w-full grid gap-12 lg:grid-cols-[1.15fr_0.85fr] items-start">
         <div className="space-y-12">
           <div className="about-fade flex items-center gap-3 text-base uppercase tracking-[0.3em] text-[var(--fg-soft)]">
@@ -132,6 +129,7 @@ export default function About() {
               Da sempre curioso, unisco tecnica e design per costruire prodotti
               essenziali e performanti.
             </h2>
+
             <p className="text-xl md:text-2xl text-[var(--fg-soft)] leading-relaxed">
               Parto da basi cloud solide, dati chiari e interfacce semplici.
               Lavoro con team distribuiti, documentando le scelte e mantenendo
@@ -139,6 +137,7 @@ export default function About() {
             </p>
           </div>
 
+          {/* HIGHLIGHTS */}
           <div className="about-fade grid sm:grid-cols-2 gap-4">
             {highlights.map((item, idx) => (
               <div
@@ -159,11 +158,11 @@ export default function About() {
             href="/cvDocument/CVSamu.pdf"
             className="about-fade inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border)] text-[var(--fg-strong)] text-base hover:border-[var(--accent)] transition-all bg-white/80"
           >
-            Scarica il CV completo
-            <span className="text-lg">↓</span>
+            Scarica il CV completo ↓
           </a>
         </div>
 
+        {/* TIMELINE CARD */}
         <div className="about-fade relative rounded-3xl border border-[var(--border)] bg-white/85 backdrop-blur-xl p-8 space-y-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
           <div className="flex items-center justify-between">
             <p className="text-sm uppercase tracking-[0.22em] text-[var(--fg-soft)]">
@@ -173,18 +172,17 @@ export default function About() {
               In crescita
             </span>
           </div>
+
+          {/* TIMELINE EXPAND AREA */}
           <div
             ref={timelineRef}
             style={{
-              maxHeight: `${maxHeight}px`,
+              height: 360,
+              overflow: "hidden",
               maskImage: expanded ? maskExpanded : maskCollapsed,
               WebkitMaskImage: expanded ? maskExpanded : maskCollapsed,
-              maskSize: "100% 100%",
-              WebkitMaskSize: "100% 100%",
-              maskRepeat: "no-repeat",
-              WebkitMaskRepeat: "no-repeat",
             }}
-            className="relative divide-y divide-[var(--border)] overflow-hidden transition-[max-height] duration-[620ms] ease-[cubic-bezier(0.33,1,0.68,1)] will-change-[max-height]"
+            className="relative divide-y divide-[var(--border)] will-change-[height]"
           >
             {experiences.map((exp, idx) => (
               <div key={idx} className="py-5 first:pt-0 last:pb-0 space-y-2">
@@ -201,12 +199,14 @@ export default function About() {
               </div>
             ))}
           </div>
+
+          {/* TOGGLE BUTTON */}
           <button
             type="button"
             onClick={() => setExpanded((prev) => !prev)}
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-sm text-[var(--fg-strong)] hover:border-[var(--accent)] transition-colors"
-            aria-label={toggleLabel}
             aria-expanded={expanded}
+            aria-label={toggleLabel}
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-sm text-[var(--fg-strong)] hover:border-[var(--accent)] transition-colors"
           >
             {toggleLabel}
             <span
