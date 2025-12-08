@@ -82,10 +82,6 @@ export default function Home() {
           </div>
 
           <div className="space-y-6 max-w-3xl">
-            <p className="text-base md:text-lg text-[var(--fg-soft)] leading-relaxed">
-              Preferisco soluzioni leggere, rilasci frequenti e micro-animazioni
-              solo dove servono.
-            </p>
             <div className="flex flex-wrap items-center gap-4 text-2xl text-[var(--fg-strong)]">
               <a
                 href="https://github.com/H1R05"

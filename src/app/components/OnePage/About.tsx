@@ -126,14 +126,16 @@ export default function About() {
             <h2
               className={`${bebasNeue.className} text-5xl md:text-6xl lg:text-7xl leading-[0.95] text-[var(--fg-strong)]`}
             >
-              Da sempre curioso, unisco tecnica e design per costruire prodotti
-              essenziali e performanti.
+              Da sempre sono affascinato dal mondo della tecnologia e
+              dell'informatica.
             </h2>
 
             <p className="text-xl md:text-2xl text-[var(--fg-soft)] leading-relaxed">
-              Parto da basi cloud solide, dati chiari e interfacce semplici.
-              Lavoro con team distribuiti, documentando le scelte e mantenendo
-              il ritmo con cicli brevi e feedback rapidi.
+              Questa passione mi ha portato a scegliere un percorso di studi che
+              mi permette di unire competenze tecniche e creatività. Sono
+              curioso, voglio imparare sempre di più e godermi il viaggio nel
+              mondo dell'informatica, mettendo il cuore in tutto quello che
+              faccio.
             </p>
           </div>
 
