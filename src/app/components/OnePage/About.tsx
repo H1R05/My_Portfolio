@@ -51,6 +51,7 @@ const experiences = [
 export default function About() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const timelineRef = useRef<HTMLDivElement | null>(null);
+  const hasAnimated = useRef(false);
   const [expanded, setExpanded] = useState(false);
   const toggleLabel = expanded ? "Riduci il percorso" : "Espandi il percorso";
 
@@ -65,23 +66,37 @@ export default function About() {
   // -------------------------------------------------------
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
+    if (hasAnimated.current) return;
+    hasAnimated.current = true;
     gsap.registerPlugin(ScrollTrigger);
 
+    let frame = 0;
     const ctx = gsap.context(() => {
-      gsap.from(".about-fade", {
-        y: 24,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-        },
+      frame = requestAnimationFrame(() => {
+        gsap.fromTo(
+          ".about-fade",
+          { y: 24 },
+          {
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power3.out",
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 70%",
+              once: true,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      cancelAnimationFrame(frame);
+      ctx.revert();
+    };
   }, []);
 
   // -------------------------------------------------------
@@ -127,14 +142,14 @@ export default function About() {
               className={`${bebasNeue.className} text-5xl md:text-6xl lg:text-7xl leading-[0.95] text-[var(--fg-strong)]`}
             >
               Da sempre sono affascinato dal mondo della tecnologia e
-              dell'informatica.
+              dell&apos;informatica.
             </h2>
 
             <p className="text-xl md:text-2xl text-[var(--fg-soft)] leading-relaxed">
               Questa passione mi ha portato a scegliere un percorso di studi che
               mi permette di unire competenze tecniche e creatività. Sono
               curioso, voglio imparare sempre di più e godermi il viaggio nel
-              mondo dell'informatica, mettendo il cuore in tutto quello che
+              mondo dell&apos;informatica, mettendo il cuore in tutto quello che
               faccio.
             </p>
           </div>

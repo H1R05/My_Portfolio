@@ -15,23 +15,38 @@ export default function Contact() {
   const [error, setError] = useState("");
 
   const sectionRef = useRef(null);
+  const hasAnimated = useRef(false);
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
+    if (hasAnimated.current) return;
+    hasAnimated.current = true;
     gsap.registerPlugin(ScrollTrigger);
 
+    let frame = 0;
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
+      frame = requestAnimationFrame(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+            once: true,
+            invalidateOnRefresh: true,
+          },
+        });
+        tl.from(sectionRef.current, {
+          y: 50,
+          duration: 0.5,
+          immediateRender: false,
+        });
       });
-      tl.from(sectionRef.current, { y: 50, autoAlpha: 0, duration: 0.5 });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      cancelAnimationFrame(frame);
+      ctx.revert();
+    };
   }, []);
 
   const handleChange = (

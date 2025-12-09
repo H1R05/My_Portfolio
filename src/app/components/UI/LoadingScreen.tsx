@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, usePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const greetings = [
   "ciao",
@@ -20,22 +20,10 @@ const greetings = [
 ];
 
 export default function LoadingScreen() {
-  const [isPresent] = usePresence();
-  const [mounted, setMounted] = useState(false);
   const [index, setIndex] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-    if (!isPresent) return;
-
     intervalRef.current = setInterval(() => {
       setIndex((prev) => (prev + 1) % greetings.length);
     }, 600);
@@ -46,9 +34,7 @@ export default function LoadingScreen() {
         intervalRef.current = null;
       }
     };
-  }, [isPresent]);
-
-  if (!mounted) return null;
+  }, []);
 
   return (
     <motion.div

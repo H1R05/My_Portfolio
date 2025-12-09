@@ -43,6 +43,7 @@ export default function Projects() {
   const sectionRef = useRef(null);
   const projectsRef = useRef<HTMLDivElement | null>(null);
   const certificatesRef = useRef<HTMLDivElement | null>(null);
+  const hasAnimated = useRef(false);
   const PROJECTS_COLLAPSED = 520;
   const CERTS_COLLAPSED = 440;
   const [projectsExpanded, setProjectsExpanded] = useState(false);
@@ -62,23 +63,37 @@ export default function Projects() {
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
+    if (hasAnimated.current) return;
+    hasAnimated.current = true;
     gsap.registerPlugin(ScrollTrigger);
 
+    let frame = 0;
     const ctx = gsap.context(() => {
-      gsap.from(".portfolio-fade", {
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-        },
+      frame = requestAnimationFrame(() => {
+        gsap.fromTo(
+          ".portfolio-animate",
+          { y: 60 },
+          {
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power3.out",
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 70%",
+              once: true,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      cancelAnimationFrame(frame);
+      ctx.revert();
+    };
   }, []);
 
   useLayoutEffect(() => {
@@ -157,7 +172,7 @@ export default function Projects() {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto space-y-16">
-        <div className="portfolio-fade space-y-6 max-w-4xl">
+        <div className="portfolio-animate space-y-6 max-w-4xl">
           <div className="flex items-center gap-3 text-sm uppercase tracking-[0.28em] text-[var(--fg-soft)]">
             <div className="h-px w-10 bg-[rgba(47,42,36,0.2)]" />
             <span>Portfolio</span>
@@ -174,7 +189,7 @@ export default function Projects() {
         </div>
 
         {/* GRID PROGETTI */}
-        <div className="portfolio-fade space-y-4">
+        <div className="space-y-4">
           <div
             ref={projectsRef}
             style={{
@@ -217,7 +232,7 @@ export default function Projects() {
           </button>
         </div>
 
-        <div className="glass-card portfolio-fade rounded-3xl border border-[var(--border)] p-6 bg-white/85">
+        <div className="glass-card portfolio-animate rounded-3xl border border-[var(--border)] p-6 bg-white/85">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
             <div>
               <p className="text-sm uppercase tracking-[0.2em] text-[var(--fg-soft)]">
@@ -234,7 +249,7 @@ export default function Projects() {
         </div>
 
         {/* CERTIFICAZIONI */}
-        <div className="portfolio-fade space-y-6">
+        <div className="portfolio-animate space-y-6">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div>
               <p className="text-sm uppercase tracking-[0.2em] text-[var(--fg-soft)]">
