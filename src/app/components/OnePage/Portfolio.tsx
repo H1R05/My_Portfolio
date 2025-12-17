@@ -67,31 +67,35 @@ export default function Projects() {
     hasAnimated.current = true;
     gsap.registerPlugin(ScrollTrigger);
 
-    let frame = 0;
     const ctx = gsap.context(() => {
-      frame = requestAnimationFrame(() => {
-        gsap.fromTo(
-          ".portfolio-animate",
-          { y: 60 },
-          {
+      const items = gsap.utils.toArray<HTMLElement>(".portfolio-animate");
+      if (!items.length) return;
+
+      gsap.set(items, {
+        autoAlpha: 0,
+        y: 50,
+        force3D: true,
+        willChange: "transform, opacity",
+      });
+
+      ScrollTrigger.batch(items, {
+        start: "top 80%",
+        once: true,
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            autoAlpha: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.7,
             stagger: 0.12,
             ease: "power3.out",
-            immediateRender: false,
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 70%",
-              once: true,
-              invalidateOnRefresh: true,
-            },
-          }
-        );
+            overwrite: true,
+            clearProps: "will-change",
+          });
+        },
       });
     }, sectionRef);
 
     return () => {
-      cancelAnimationFrame(frame);
       ctx.revert();
     };
   }, []);

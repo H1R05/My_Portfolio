@@ -46,6 +46,36 @@ const experiences = [
     place: "Certificazioni & corsi",
     desc: "Approfondimenti su AWS, sicurezza e design system per prodotti scalabili.",
   },
+  {
+    period: "2023",
+    role: "Formazione tecnica",
+    place: "Certificazioni & corsi",
+    desc: "Approfondimenti su AWS, sicurezza e design system per prodotti scalabili.",
+  },
+  {
+    period: "2023",
+    role: "Formazione tecnica",
+    place: "Certificazioni & corsi",
+    desc: "Approfondimenti su AWS, sicurezza e design system per prodotti scalabili.",
+  },
+  {
+    period: "2023",
+    role: "Formazione tecnica",
+    place: "Certificazioni & corsi",
+    desc: "Approfondimenti su AWS, sicurezza e design system per prodotti scalabili.",
+  },
+  {
+    period: "2023",
+    role: "Formazione tecnica",
+    place: "Certificazioni & corsi",
+    desc: "Approfondimenti su AWS, sicurezza e design system per prodotti scalabili.",
+  },
+  {
+    period: "2023",
+    role: "Formazione tecnica",
+    place: "Certificazioni & corsi",
+    desc: "Approfondimenti su AWS, sicurezza e design system per prodotti scalabili.",
+  },
 ];
 
 export default function About() {
@@ -70,31 +100,35 @@ export default function About() {
     hasAnimated.current = true;
     gsap.registerPlugin(ScrollTrigger);
 
-    let frame = 0;
     const ctx = gsap.context(() => {
-      frame = requestAnimationFrame(() => {
-        gsap.fromTo(
-          ".about-fade",
-          { y: 24 },
-          {
+      const items = gsap.utils.toArray<HTMLElement>(".about-fade");
+      if (!items.length) return;
+
+      gsap.set(items, {
+        autoAlpha: 0,
+        y: 24,
+        force3D: true,
+        willChange: "transform, opacity",
+      });
+
+      ScrollTrigger.batch(items, {
+        start: "top 80%",
+        once: true,
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            autoAlpha: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.6,
             stagger: 0.12,
             ease: "power3.out",
-            immediateRender: false,
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 70%",
-              once: true,
-              invalidateOnRefresh: true,
-            },
-          }
-        );
+            overwrite: true,
+            clearProps: "will-change",
+          });
+        },
       });
     }, sectionRef);
 
     return () => {
-      cancelAnimationFrame(frame);
       ctx.revert();
     };
   }, []);

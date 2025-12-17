@@ -15,6 +15,7 @@ export default function Contact() {
   const [error, setError] = useState("");
 
   const sectionRef = useRef(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
   const hasAnimated = useRef(false);
 
   useLayoutEffect(() => {
@@ -23,28 +24,36 @@ export default function Contact() {
     hasAnimated.current = true;
     gsap.registerPlugin(ScrollTrigger);
 
-    let frame = 0;
     const ctx = gsap.context(() => {
-      frame = requestAnimationFrame(() => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-            invalidateOnRefresh: true,
-          },
-        });
-        tl.from(sectionRef.current, {
-          y: 50,
-          duration: 0.5,
-          immediateRender: false,
-        });
+      const target = contentRef.current;
+      if (!target) return;
+
+      gsap.set(target, {
+        autoAlpha: 0,
+        y: 32,
+        force3D: true,
+        willChange: "transform, opacity",
+      });
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top 80%",
+        once: true,
+        invalidateOnRefresh: true,
+        onEnter: () => {
+          gsap.to(target, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power3.out",
+            overwrite: true,
+            clearProps: "will-change",
+          });
+        },
       });
     }, sectionRef);
 
     return () => {
-      cancelAnimationFrame(frame);
       ctx.revert();
     };
   }, []);
@@ -110,7 +119,10 @@ export default function Contact() {
       </div>
 
       {/* CONTENUTO */}
-      <div className="relative z-10 max-w-6xl w-full grid gap-10 lg:grid-cols-[1fr_1fr] items-start">
+      <div
+        ref={contentRef}
+        className="relative z-10 max-w-6xl w-full grid gap-10 lg:grid-cols-[1fr_1fr] items-start"
+      >
         <div className="space-y-6">
           <div className="about-fade flex items-center gap-3 text-base uppercase tracking-[0.3em] text-[var(--fg-soft)]">
             <div className="h-px w-10 bg-[rgba(47,42,36,0.2)]" />
