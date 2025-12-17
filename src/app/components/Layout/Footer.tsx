@@ -10,10 +10,7 @@ export default function Footer() {
         <div className="absolute inset-x-0 top-0 h-px bg-[rgba(47,42,36,0.08)]" />
         <div className="absolute -left-24 top-[-35%] h-64 w-64 rounded-full bg-[rgba(217,200,176,0.24)] blur-[140px]" />
         <div className="absolute right-[-10%] bottom-[-20%] h-72 w-72 rounded-full bg-[rgba(198,168,131,0.18)] blur-[170px]" />
-        <div
-          className="absolute inset-0 opacity-14 mix-blend-soft-light"
-          style={{ backgroundImage: "url('/noise.svg')" }}
-        />
+        <div className="absolute inset-0 opacity-14 mix-blend-soft-light" />
       </div>
 
       <div className="relative max-w-6xl mx-auto px-6 py-8">
@@ -22,7 +19,9 @@ export default function Footer() {
             <span className="h-2 w-2 rounded-full bg-[var(--accent)] shadow-[0_0_0_6px_rgba(198,168,131,0.18)]" />
             <span>
               © 2025 — Disegnato e sviluppato da{" "}
-              <span className="text-[var(--fg-strong)] font-semibold">Samuele Angelicchio</span>
+              <span className="text-[var(--fg-strong)] font-semibold">
+                Samuele Angelicchio
+              </span>
             </span>
           </div>
           <div className="flex gap-4 text-xl text-[var(--fg-strong)]">

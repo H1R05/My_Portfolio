@@ -47,10 +47,7 @@ export default function LoadingScreen() {
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 opacity-60 bg-[radial-gradient(circle_at_24%_28%,rgba(255,255,255,0.35),transparent_42%),radial-gradient(circle_at_78%_70%,rgba(255,255,255,0.28),transparent_46%)]" />
         <div className="absolute inset-0 opacity-45 bg-[linear-gradient(115deg,rgba(47,42,36,0.08)_1px,transparent_1px),linear-gradient(rgba(47,42,36,0.06)_1px,transparent_1px)] bg-[size:180px_180px]" />
-        <div
-          className="absolute inset-0 opacity-16 mix-blend-soft-light"
-          style={{ backgroundImage: "url('/noise.svg')" }}
-        />
+        <div className="absolute inset-0 opacity-16 mix-blend-soft-light" />
       </div>
 
       <motion.div

@@ -97,7 +97,7 @@
 ============================= */
 html,
 body {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
   background: radial-gradient(
       circle at 18% 22%,
       rgba(206, 178, 140, 0.22),
@@ -110,11 +110,6 @@ body {
     ),
     linear-gradient(120deg, #faf6ef, #f3ebde, #f9f4ea);
   color: var(--fg-strong);
-}
-
-html.smooth-scroll,
-body.smooth-scroll {
-  scroll-behavior: smooth;
 }
 
 body::before {
@@ -136,6 +131,8 @@ body::after {
   opacity: 0.08;
   mix-blend-mode: soft-light;
   pointer-events: none;
+  background-size: 160px 160px;
+  background-repeat: repeat;
 }
 
 * {
