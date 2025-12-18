@@ -17,6 +17,16 @@ export default function Header() {
   const [mounted, setMounted] = useState(false);
   const clickLockRef = useRef<number | null>(null);
 
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (!section) return;
+    const offset = 72; // header height (~64px) + breathing room
+    const top =
+      section.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: "smooth" });
+    history.replaceState(null, "", `#${id}`);
+  };
+
   /* Fade-in navbar */
   useEffect(() => {
     gsap.from(".nav-wrap", {
@@ -118,11 +128,14 @@ export default function Header() {
               <Link
                 key={link.id}
                 href={`#${link.id}`}
+                scroll={false}
                 data-link={link.id}
                 className="group relative px-1 py-1 transition-colors duration-150 hover:text-[var(--fg-strong)]"
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   setActive(link.id);
                   clickLockRef.current = performance.now();
+                  scrollToSection(link.id);
                 }}
               >
                 <span

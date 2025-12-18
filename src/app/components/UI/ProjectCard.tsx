@@ -6,6 +6,7 @@ interface ProjectCardProps {
   description: string;
   github: string;
   category: string;
+  tool: string;
 }
 
 export default function ProjectCard({
@@ -14,6 +15,7 @@ export default function ProjectCard({
   description,
   github,
   category,
+  tool,
 }: ProjectCardProps) {
   return (
     <article
@@ -57,7 +59,7 @@ export default function ProjectCard({
 
           <div className="flex items-center justify-between pt-2">
             <span className="px-3 py-1 text-xs rounded-full bg-white/80 border border-[var(--border)]">
-              Dettagli
+              {tool}
             </span>
 
             <a

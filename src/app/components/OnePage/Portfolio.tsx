@@ -15,6 +15,7 @@ const projects = [
       "Una semplice galleria immagini con l'implementazione della steganografia ",
     github: "https://github.com/H1R05/GalleriaIMG-Steganografia",
     category: "Progetto",
+    tool: "Python",
   },
   {
     Img: "/project/sitoPortfolio.png",
@@ -22,6 +23,7 @@ const projects = [
     description: "Portfolio personale moderno che mi rappresenta",
     github: "https://github.com/H1R05/SamuApp",
     category: "Progetto",
+    tool: "Next.js - React - Typescript",
   },
 ];
 const certificates = [
@@ -215,6 +217,7 @@ export default function Projects() {
                 title={project.title}
                 description={project.description}
                 github={project.github}
+                tool={project.tool}
               />
             ))}
           </div>
@@ -253,7 +256,7 @@ export default function Projects() {
         </div>
 
         {/* CERTIFICAZIONI */}
-        <div className="portfolio-animate space-y-6">
+        <div id="certifications" className="portfolio-animate space-y-6">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div>
               <p className="text-sm uppercase tracking-[0.2em] text-[var(--fg-soft)]">
