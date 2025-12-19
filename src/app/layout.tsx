@@ -1,35 +1,21 @@
-"use client";
+import type { ReactNode } from "react";
 import "./globals.css";
-import Header from "./components/Layout/Header";
-import Footer from "./components/Layout/Footer";
-import LoadingScreen from "./components/UI/LoadingScreen";
-import { useState, useEffect } from "react";
-import ParticleBackgroundAdvanced from "./components/style/AnimatedBackground";
+import { inter } from "./components/fonts/permanentMarker";
+import AppShell from "./components/Layout/AppShell";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 300);
-    return () => clearTimeout(timer);
-  }, []);
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <title>SamuPortfolio</title>
+        <title>Samuele Angelicchio — Portfolio</title>
         <link rel="icon" href="../elements/favicon.ico" type="image/x-icon" />
+        <meta
+          name="description"
+          content="Portfolio di Samuele Angelicchio: sviluppo cloud, full stack e prodotti digitali."
+        />
       </head>
-      <body className="flex flex-col min-h-screen bg-unique-pattern">
-        <Header></Header>
-        <main className="flex-1">
-          <ParticleBackgroundAdvanced></ParticleBackgroundAdvanced>{" "}
-          {loading ? <LoadingScreen /> : children}
-        </main>
-        <Footer></Footer>
+      <body className={`${inter.className} flex flex-col min-h-screen`}>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

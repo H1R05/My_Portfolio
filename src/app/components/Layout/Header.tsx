@@ -1,12 +1,10 @@
 "use client";
+
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import gsap from "gsap";
-import { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { russoOne } from "../style/permanentMarker";
-import Image from "next/image";
 
-type NavLink = { name: string; id: string };
-
-const navLinks: NavLink[] = [
+const links = [
   { name: "Home", id: "home" },
   { name: "About", id: "about" },
   { name: "Portfolio", id: "portfolio" },
@@ -14,83 +12,154 @@ const navLinks: NavLink[] = [
 ];
 
 export default function Header() {
-  const [active, setActive] = useState<string>("home");
-  const cardRef = useRef<HTMLDivElement | null>(null);
-  const logoRef = useRef<HTMLDivElement | null>(null);
+  const [active, setActive] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const clickLockRef = useRef<number | null>(null);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: { duration: 1.5, ease: "power3.out" },
-      });
-      tl.from(cardRef.current, { y: -80, opacity: 0, scale: 1 });
-      tl.from(logoRef.current, { x: -50, opacity: 0, scale: 1 }, "-=0.5");
-    }, cardRef);
-    return () => ctx.revert();
-  }, []);
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (!section) return;
+    const offset = 72;
+    const top = section.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: "smooth" });
+    history.replaceState(null, "", `#${id}`);
+  };
 
+  /* Fade-in navbar */
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const sections = navLinks
-        .map((l) => document.getElementById(l.id))
-        .filter(Boolean) as HTMLElement[];
-
-      if (!sections.length) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) setActive(entry.target.id);
-          });
-        },
-        { threshold: 0.5 }
-      );
-      sections.forEach((section) => observer.observe(section));
-
-      return () => observer.disconnect();
-    }, 350);
-
-    return () => clearTimeout(timer);
+    gsap.from(".nav-wrap", {
+      y: -12,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power3.out",
+    });
+    setMounted(true);
   }, []);
+
+  /* Track scroll for background */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /* Track section in view */
+  useEffect(() => {
+    const sections = links
+      .map((l) => document.getElementById(l.id))
+      .filter(Boolean) as HTMLElement[];
+
+    if (!sections.length) return;
+    let ticking = false;
+
+    const updateActive = () => {
+      if (clickLockRef.current) {
+        const now = performance.now();
+        if (now - clickLockRef.current < 900) return;
+        clickLockRef.current = null;
+      }
+
+      if (window.scrollY < 160) {
+        setActive("home");
+        return;
+      }
+
+      const viewportCenter = window.innerHeight * 0.35;
+      let closestId = active;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.top - viewportCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestId = section.id;
+        }
+      });
+      setActive((prev) => (prev === closestId ? prev : closestId));
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          updateActive();
+          ticking = false;
+        });
+      }
+    };
+
+    updateActive();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", updateActive);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", updateActive);
+    };
+  }, [active]);
+
+  if (!mounted) return null;
 
   return (
-    <header className="fixed top-4 left-0 w-full z-50 flex justify-center">
-      <div
-        ref={cardRef}
-        className="w-[85%] max-w-3xl h-20
-        bg-gradient-to-r from-slate-600/80 to-slate-700/40
-        backdrop-blur-lg shadow-[0_10px_15px_rgba(255,255,100,0.2)]
-        rounded-full flex items-center justify-around px-6 border border-white/50"
-      >
-        <div ref={logoRef} className="items-center">
-          <Image
-            width={10}
-            height={10}
-            className="h-40 mt-3 w-auto object-contain"
-            alt={""}
-            src={"../elements/logoSitoWeb.svg"}
-          ></Image>
+    <header
+      className={`nav-wrap fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "bg-[rgba(12,16,19,0.78)] backdrop-blur-xl border-b border-[var(--border)] shadow-sm"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-10">
+        <div className="flex items-center gap-3 text-[var(--fg-strong)]">
+          <span className="text-lg font-semibold tracking-tight">
+            Samuele Angelicchio
+          </span>
         </div>
 
-        <nav className="flex space-x-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              onClick={() => setActive(link.id)}
-              className={`${
-                russoOne.className
-              } text-lg tracking-wide uppercase transition-all duration-300
-                ${
-                  active === link.id
-                    ? "text-yellowLight drop-shadow-[0_0_5px_#ff2e63]"
-                    : "text-silver hover:text-yellowLight hover:drop-shadow-[0_0_5px_#ff2e63]"
-                }`}
-            >
-              {link.name}
-            </a>
-          ))}
+        {/* navigation */}
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--fg-soft)]">
+          {links.map((link) => {
+            const isActive = active === link.id;
+            return (
+              <Link
+                key={link.id}
+                href={`#${link.id}`}
+                scroll={false}
+                data-link={link.id}
+                className="group relative px-1 py-1 transition-colors duration-150 hover:text-[var(--fg-strong)]"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActive(link.id);
+                  clickLockRef.current = performance.now();
+                  scrollToSection(link.id);
+                }}
+              >
+                <span
+                  className={`relative z-10 tracking-tight ${
+                    isActive
+                      ? "text-[var(--fg-strong)]"
+                      : "group-hover:text-[var(--fg-strong)]"
+                  }`}
+                >
+                  {link.name}
+                </span>
+                <span
+                  className={`pointer-events-none absolute left-0 right-0 -bottom-1 h-[2px] rounded-full transition-all duration-200 ${
+                    isActive
+                      ? "opacity-100 bg-[var(--accent)]"
+                      : "opacity-0 group-hover:opacity-70 bg-[var(--accent)]/70"
+                  }`}
+                />
+              </Link>
+            );
+          })}
         </nav>
+
+        <div className="md:hidden text-[var(--fg-strong)] text-sm px-3 py-2 rounded-full border border-[var(--border)] bg-[rgba(12,16,19,0.75)] backdrop-blur-md">
+          Menu
+        </div>
       </div>
     </header>
   );

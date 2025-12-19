@@ -1,73 +1,96 @@
 import { useState } from "react";
+import Image from "next/image";
 
 interface CertificateCardProps {
-  preview: string;
-  name: string;
-  file: string;
+  preview?: string;
+  Img?: string;
+  name?: string;
+  title?: string;
+  file?: string;
+  link?: string;
+  category: string;
 }
 
-const CertificateCard: React.FC<CertificateCardProps> = ({
+export default function CertificateCard({
   preview,
+  Img,
   name,
+  title,
   file,
-}) => {
+  link,
+  category,
+}: CertificateCardProps) {
   const [showPdf, setShowPdf] = useState(false);
+  const imageSrc = Img || preview || "";
+  const displayTitle = title || name || "Certificato";
+  const href = link || file || "#";
 
   return (
-    <div
-      className="relative w-80 flex flex-col 
-      bg-[#0b132b]/80 border border-yellow-300/30 rounded-2xl overflow-hidden 
-      shadow-[0_0_20px_rgba(255,215,0,0.15)]
-      p-4 transition-all duration-300 hover:scale-[1.04] 
-      hover:shadow-[0_0_25px_rgba(255,215,0,0.35)]"
+    <article
+      className="
+        group relative rounded-3xl border border-[var(--border)]
+        bg-[var(--card)] transition-all duration-300 
+        hover:bg-[rgba(20,26,30,0.92)] hover:-translate-y-[4px]
+        hover:shadow-[0_16px_32px_rgba(0,0,0,0.35)]
+        will-change-transform
+      "
     >
-      <div
-        className="absolute inset-0 pointer-events-none rounded-2xl 
-        bg-gradient-to-r from-yellow-400/20 via-transparent to-yellow-400/20 
-        opacity-0 group-hover:opacity-80 
-        transition-opacity duration-500 ease-out z-0"
-      ></div>
-
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="relative mb-4 ">
-          {!showPdf ? (
-            <img
-              src={preview}
-              alt={`Anteprima del certificato ${name}`}
-              className="w-full h-40 object-cover rounded-lg cursor-pointer shadow-md 
-              transition-transform duration-300 hover:scale-[1.03]"
-              onClick={() => setShowPdf(true)}
-            />
+      <div className="overflow-hidden rounded-3xl">
+        <div className="relative h-48 cursor-pointer">
+          {!showPdf && imageSrc ? (
+            <>
+              <Image
+                src={imageSrc}
+                alt={displayTitle}
+                fill
+                sizes="(min-width:1024px) 320px, 50vw"
+                className="
+                  object-cover transition-transform duration-500
+                  transform-gpu group-hover:scale-[1.05]
+                "
+                onClick={() => setShowPdf(true)}
+              />
+            </>
           ) : (
             <iframe
-              src={file}
-              className="w-full h-40 border border-yellow-400/30 rounded-lg"
-              title={name}
+              src={href !== "#" ? href : undefined}
+              className="w-full h-48 rounded-lg"
+              loading="lazy"
             />
           )}
+
+          <span
+            className="
+              absolute top-3 left-3 px-3 py-1 text-xs font-semibold 
+              rounded-full bg-[var(--accent-2)] text-[var(--fg-strong)]
+            "
+          >
+            {category}
+          </span>
         </div>
 
-        <h3 className="text-white text-xl font-semibold mb-3 drop-shadow-[0_0_6px_#00ffff]">
-          {name}
-        </h3>
+        <div className="p-6 space-y-4 text-[var(--fg-strong)]">
+          <h3 className="text-lg font-semibold">{displayTitle}</h3>
 
-        <a
-          href={file}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-auto inline-block w-full text-center py-2 px-4 rounded-lg 
-          bg-gradient-to-r from-yellow-400 to-yellow-300 text-blue-900 font-bold 
-          transition-all duration-300 
-          shadow-[0_0_15px_rgba(255,215,0,0.4)]
-          hover:shadow-[0_0_25px_rgba(255,215,0,0.7)] 
-          hover:scale-105"
-        >
-          {showPdf ? "Scarica" : "Visualizza PDF"}
-          <span className="ml-2">→</span>
-        </a>
+          <p className="text-sm text-[var(--fg-soft)]">
+            Visualizza o scarica il PDF del certificato.
+          </p>
+
+          <div className="flex items-center justify-between">
+            <span className="px-3 py-1 text-xs rounded-full bg-[rgba(16,21,25,0.85)] border border-[var(--border)]">
+              PDF
+            </span>
+
+            <a
+              href={href}
+              target="_blank"
+              className="font-semibold transition-colors hover:text-[var(--accent)]"
+            >
+              {showPdf ? "Scarica" : "Apri"} ↗
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+    </article>
   );
-};
-
-export default CertificateCard;
+}
