@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react" alt="React Badge"/>
   <img src="https://img.shields.io/badge/Tailwind_CSS-38BDF8?logo=tailwind-css" alt="TailwindCSS Badge"/>
   <img src="https://img.shields.io/badge/GSAP-Animation-brightgreen?logo=greensock" alt="GSAP Badge"/>
-  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="framer motion">
+  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?logo=framer&logoColor=white" alt="framer motion">
   <img src="https://img.shields.io/badge/tsparticles-Background-blueviolet" alt="tsparticles Badge"/>
   <img src="https://img.shields.io/badge/Deployed_on-Vercel-black?logo=vercel" alt="Vercel Badge"/>
 </p>
