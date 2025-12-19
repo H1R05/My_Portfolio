@@ -12,6 +12,7 @@
   <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react" alt="React Badge"/>
   <img src="https://img.shields.io/badge/Tailwind_CSS-38BDF8?logo=tailwind-css" alt="TailwindCSS Badge"/>
   <img src="https://img.shields.io/badge/GSAP-Animation-brightgreen?logo=greensock" alt="GSAP Badge"/>
+  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="framer motion">
   <img src="https://img.shields.io/badge/tsparticles-Background-blueviolet" alt="tsparticles Badge"/>
   <img src="https://img.shields.io/badge/Deployed_on-Vercel-black?logo=vercel" alt="Vercel Badge"/>
 </p>
@@ -30,11 +31,11 @@ In generale, mi ha insegnato cosa significa portare un’idea da semplice bozza 
 
 ## Tecnologie principali
 
-- **Next.js 14** – per il frontend e la gestione delle rotte  
-- **GSAP** – per animazioni fluide e interattive  
-- **Tailwind CSS** – per uno stile pulito e responsive  
-- **tsparticles** – per lo sfondo dinamico di particelle  
-- **Vercel** – per l’hosting e il deploy  
+- **Next.js 14** – per il frontend e la gestione delle rotte
+- **GSAP e Framer Motion** – per animazioni fluide e interattive
+- **Tailwind CSS** – per uno stile pulito e responsive
+- **tsparticles** – per lo sfondo dinamico di particelle
+- **Vercel** – per l’hosting e il deploy
 
 ---
 
@@ -42,6 +43,7 @@ In generale, mi ha insegnato cosa significa portare un’idea da semplice bozza 
 
 Prima dello sviluppo ho realizzato un concept su **Figma**, utile per definire layout, colori e struttura del sito.  
 Durante lo sviluppo, alcune scelte grafiche sono state adattate per migliorare performance e leggibilità.
+
 <p>
    <b>Design iniziale su Figma</b><br>
   <a href="https://www.figma.com/design/IZB09Dfiuvnv62LOcP8iye/SamuApp-Portfolio?node-id=0-1" target="_blank">
@@ -49,9 +51,7 @@ Durante lo sviluppo, alcune scelte grafiche sono state adattate per migliorare p
   </a>
 </p>
 
-
 ---
-
 
 ## Obiettivi del progetto e Step successivo
 
@@ -59,9 +59,8 @@ Durante lo sviluppo, alcune scelte grafiche sono state adattate per migliorare p
 - Mostrare le mie competenze tecniche e creative
 - Dimostrare la mia crescita continua nello sviluppo web
 
-
 Il portfolio continuerà ad evolversi: voglio integrare nuove sezioni, ottimizzare le prestazioni  
-e sperimentare nuove idee...  
+e sperimentare nuove idee...
 
 ---
 
@@ -70,7 +69,7 @@ e sperimentare nuove idee...
 <p align="center">
   <b>Samuele Angelicchio</b>  
   <br><br>
-  👉 <a href="https://portfolio-samu-gules.vercel.app/" target="_blank">Visita il portfolio online</a>
+  👉 <a href="https://samueleangelicchio.dev/" target="_blank">Visita il portfolio online</a>
 </p>
 
 ---
