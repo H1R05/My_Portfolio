@@ -117,40 +117,7 @@
 html,
 body {
   scroll-behavior: smooth;
-  background: radial-gradient(
-      circle at 18% 22%,
-      rgba(88, 140, 140, 0.18),
-      transparent 38%
-    ),
-    radial-gradient(
-      circle at 82% 12%,
-      rgba(210, 176, 107, 0.16),
-      transparent 40%
-    ),
-    linear-gradient(120deg, #0f1317, #0b0f12, #11171b);
-  color: var(--fg-strong);
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(
-    circle at center,
-    transparent 70%,
-    rgba(0, 0, 0, 0.35)
-  );
-  pointer-events: none;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  opacity: 0.08;
-  mix-blend-mode: soft-light;
-  pointer-events: none;
-  background-size: 160px 160px;
+  background-color: black;
   background-repeat: repeat;
 }
 
