@@ -9,11 +9,11 @@ import {
 import { SiTypescript } from "react-icons/si";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { IoLogoJavascript } from "react-icons/io5";
-import { BiLogoPostgresql } from "react-icons/bi";
 import { TbBrandCSharp } from "react-icons/tb";
 import { SiPnpm } from "react-icons/si";
 import { SiMysql } from "react-icons/si";
 import { SiVitest } from "react-icons/si";
+import { SiMongodb } from "react-icons/si";
 
 type TechStackItem = { name: string; Icon: React.ElementType };
 
@@ -26,6 +26,7 @@ const techStack: TechStackItem[] = [
   { name: "Html", Icon: FaHtml5 },
   { name: "Css", Icon: FaCss3Alt },
   { name: "Docker", Icon: FaDocker },
+  { name: "MongoDb", Icon: SiMongodb },
   { name: "Aws", Icon: FaAws },
   { name: "C#", Icon: TbBrandCSharp },
   { name: "Pnpm", Icon: SiPnpm },
