@@ -3,11 +3,7 @@ import "./globals.css";
 import { inter } from "./components/fonts/permanentMarker";
 import AppShell from "./components/Layout/AppShell";
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>

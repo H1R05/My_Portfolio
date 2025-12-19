@@ -42,11 +42,11 @@ export default function LoadingScreen() {
       initial={{ y: 0 }}
       exit={{ y: "-100%" }}
       transition={{ duration: 1.2, ease: [0.45, 0, 0.25, 1], type: "tween" }}
-      className="fixed inset-0 z-[9999] overflow-hidden flex items-center justify-center text-[var(--fg-strong)] transform-gpu will-change-transform bg-[radial-gradient(circle_at_18%_20%,rgba(198,168,131,0.22),transparent_42%),radial-gradient(circle_at_78%_75%,rgba(217,200,176,0.2),transparent_44%),linear-gradient(120deg,#faf6ef,#f3ebde,#f9f4ea)]"
+      className="fixed inset-0 z-[9999] overflow-hidden flex items-center justify-center text-[var(--fg-strong)] transform-gpu will-change-transform bg-[radial-gradient(circle_at_18%_20%,rgba(88,140,140,0.18),transparent_42%),radial-gradient(circle_at_78%_75%,rgba(210,176,107,0.16),transparent_44%),linear-gradient(120deg,#0f1317,#0b0f12,#11171b)]"
     >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 opacity-60 bg-[radial-gradient(circle_at_24%_28%,rgba(255,255,255,0.35),transparent_42%),radial-gradient(circle_at_78%_70%,rgba(255,255,255,0.28),transparent_46%)]" />
-        <div className="absolute inset-0 opacity-45 bg-[linear-gradient(115deg,rgba(47,42,36,0.08)_1px,transparent_1px),linear-gradient(rgba(47,42,36,0.06)_1px,transparent_1px)] bg-[size:180px_180px]" />
+        <div className="absolute inset-0 opacity-45 bg-[linear-gradient(115deg,rgba(243,238,230,0.06)_1px,transparent_1px),linear-gradient(rgba(243,238,230,0.04)_1px,transparent_1px)] bg-[size:180px_180px]" />
         <div className="absolute inset-0 opacity-16 mix-blend-soft-light" />
       </div>
 
@@ -56,10 +56,10 @@ export default function LoadingScreen() {
         transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
         className="relative flex items-center justify-center px-6"
       >
-        <div className="absolute inset-0 blur-3xl bg-[radial-gradient(circle_at_center,rgba(198,168,131,0.28),transparent_60%)]" />
-        <div className="relative rounded-3xl border border-[var(--border)] bg-white/85 backdrop-blur-xl px-8 py-6 shadow-[0_20px_60px_rgba(0,0,0,0.1)] overflow-hidden">
-          <div className="absolute -left-24 -top-20 h-40 w-40 rounded-full bg-[rgba(217,200,176,0.35)] blur-[120px]" />
-          <div className="absolute -right-16 bottom-[-18%] h-36 w-36 rounded-full bg-[rgba(198,168,131,0.32)] blur-[110px]" />
+        <div className="absolute inset-0 blur-3xl bg-[radial-gradient(circle_at_center,rgba(209,176,109,0.22),transparent_60%)]" />
+        <div className="relative rounded-3xl border border-[var(--border)] bg-[rgba(16,21,25,0.86)] backdrop-blur-xl px-8 py-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)] overflow-hidden">
+          <div className="absolute -left-24 -top-20 h-40 w-40 rounded-full bg-[rgba(var(--glow-cyan),0.28)] blur-[120px]" />
+          <div className="absolute -right-16 bottom-[-18%] h-36 w-36 rounded-full bg-[rgba(var(--glow-pink),0.26)] blur-[110px]" />
           <div className="relative flex flex-col items-center gap-4">
             <span className="text-xs uppercase tracking-[0.28em] text-[var(--fg-soft)]/80">
               Sto caricando
@@ -79,13 +79,13 @@ export default function LoadingScreen() {
                 </motion.span>
               </AnimatePresence>
             </div>
-            <div className="relative h-1.5 w-28 rounded-full bg-[rgba(47,42,36,0.08)] overflow-hidden">
+            <div className="relative h-1.5 w-28 rounded-full bg-[rgba(243,238,230,0.1)] overflow-hidden">
               <motion.div
                 key={index}
                 initial={{ x: "-70%" }}
                 animate={{ x: "110%" }}
                 transition={{ duration: 1.1, ease: [0.33, 1, 0.68, 1] }}
-                className="absolute inset-y-0 w-16 rounded-full bg-gradient-to-r from-[var(--accent)] to-[rgba(198,168,131,0.65)]"
+                className="absolute inset-y-0 w-16 rounded-full bg-gradient-to-r from-[var(--accent)] to-[rgba(209,176,109,0.65)]"
               />
             </div>
           </div>

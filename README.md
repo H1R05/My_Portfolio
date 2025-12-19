@@ -68,7 +68,7 @@ e sperimentare nuove idee...
 <p align="center">
   <b>Samuele Angelicchio</b>  
   <br><br>
-  👉 <a href="https://portfolio-samu-gules.vercel.app/" target="_blank">Visita il portfolio online</a>
+  👉 <a href="https://samueleangelicchio.dev/" target="_blank">Visita il portfolio online</a>
 </p>
 
 ---

@@ -108,7 +108,7 @@ export default function Header() {
     <header
       className={`nav-wrap fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-white/85 backdrop-blur-xl border-b border-[var(--border)] shadow-sm"
+          ? "bg-[rgba(12,16,19,0.78)] backdrop-blur-xl border-b border-[var(--border)] shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -159,7 +159,7 @@ export default function Header() {
           })}
         </nav>
 
-        <div className="md:hidden text-[var(--fg-strong)] text-sm px-3 py-2 rounded-full border border-[var(--border)] bg-white/80 backdrop-blur-md">
+        <div className="md:hidden text-[var(--fg-strong)] text-sm px-3 py-2 rounded-full border border-[var(--border)] bg-[rgba(12,16,19,0.75)] backdrop-blur-md">
           Menu
         </div>
       </div>

@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { bebasNeue, inter } from "../fonts/permanentMarker";
 const projects = [
   {
-    Img: "/project/galleriaSteganografia.png",
+    Img: "/project/ScreenshotGalleriaSteganografia.png",
     title: "Galleria Immagini Steganografia",
     description:
       "Una semplice galleria immagini con l'implementazione della steganografia ",
@@ -18,9 +18,9 @@ const projects = [
     tool: "Python",
   },
   {
-    Img: "/project/sitoPortfolio.png",
+    Img: "/project/ScreenshotPortfolioNew.png",
     title: "Modern Web Portfolio",
-    description: "Portfolio personale moderno che mi rappresenta",
+    description: "Portfolio personale moderno",
     github: "https://github.com/H1R05/SamuApp",
     category: "Progetto",
     tool: "Next.js - React - Typescript",
@@ -169,28 +169,28 @@ export default function Projects() {
       className={`relative min-h-screen px-6 py-32 overflow-hidden ${inter.className}`}
     >
       {/* FRAME + MINI BLUR + HUD */}
-      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
+      <div className="section-bg absolute inset-0 pointer-events-none select-none overflow-hidden">
         <div className="absolute left-[-6%] top-[18%] h-[16rem] w-[16rem] rounded-full bg-[rgba(var(--glow-cyan),0.16)] blur-[160px]" />
         <div className="absolute right-[-6%] bottom-[18%] h-[16rem] w-[16rem] rounded-full bg-[rgba(var(--glow-pink),0.14)] blur-[160px]" />
-        <div className="absolute inset-x-0 top-[24%] h-px bg-white/5" />
-        <div className="absolute left-[3rem] top-[24%] h-[55%] w-px bg-white/5" />
+        <div className="absolute inset-x-0 top-[24%] h-px bg-[rgba(243,238,230,0.06)]" />
+        <div className="absolute left-[3rem] top-[24%] h-[55%] w-px bg-[rgba(243,238,230,0.06)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.05),transparent_35%),radial-gradient(circle_at_80%_75%,rgba(255,255,255,0.04),transparent_40%)]" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto space-y-16">
         <div className="portfolio-animate space-y-6 max-w-4xl">
           <div className="flex items-center gap-3 text-sm uppercase tracking-[0.28em] text-[var(--fg-soft)]">
-            <div className="h-px w-10 bg-[rgba(47,42,36,0.2)]" />
+            <div className="h-px w-10 bg-[rgba(243,238,230,0.18)]" />
             <span>Portfolio</span>
           </div>
           <h2
             className={`${bebasNeue.className} text-5xl md:text-6xl text-[var(--fg-strong)] leading-[0.95]`}
           >
-            Progetti e credenziali recenti
+            Progetti e certificazioni
           </h2>
           <p className="text-lg md:text-xl text-[var(--fg-soft)] max-w-3xl">
-            Un mix di prodotti web, automazioni e certificazioni: architetture
-            solide, UI essenziali e attenzione alle performance.
+            Un mix di progetti, certificati e tecnologie che riflettono il mio
+            percorso professionale e le mie competenze attuali.
           </p>
         </div>
 
@@ -239,7 +239,7 @@ export default function Projects() {
           </button>
         </div>
 
-        <div className="glass-card portfolio-animate rounded-3xl border border-[var(--border)] p-6 bg-white/85">
+        <div className="glass-card portfolio-animate rounded-3xl border border-[var(--border)] p-6 bg-[var(--card)]">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
             <div>
               <p className="text-sm uppercase tracking-[0.2em] text-[var(--fg-soft)]">
@@ -250,7 +250,7 @@ export default function Projects() {
               </h3>
             </div>
           </div>
-          <div className="relative overflow-hidden rounded-2xl bg-white/70 border border-[var(--border)]">
+          <div className="relative overflow-hidden rounded-2xl bg-[var(--card)] border border-[var(--border)]">
             <TechStackTicker />
           </div>
         </div>
@@ -266,9 +266,6 @@ export default function Projects() {
                 Attestati di competenza
               </h3>
             </div>
-            <span className="tag text-[var(--fg-strong)] bg-white/85">
-              2023 — 2024
-            </span>
           </div>
 
           <div className="space-y-4">

@@ -7,13 +7,15 @@
 ============================= */
 @layer utilities {
   :root {
-    --bg-base: #f7f3ed;
-    --fg-strong: #2f2a24;
-    --fg-soft: #5f564c;
-    --accent: #c6a883;
-    --accent-2: #d9c8b0;
-    --card: rgba(255, 255, 255, 0.7);
-    --border: rgba(47, 42, 36, 0.1);
+    --bg-base: #0d1115;
+    --fg-strong: #f3eee6;
+    --fg-soft: #b8afa2;
+    --accent: #d1b06d;
+    --accent-2: #2f4b4a;
+    --card: rgba(16, 21, 25, 0.82);
+    --border: rgba(243, 238, 230, 0.12);
+    --glow-cyan: 88, 140, 140;
+    --glow-pink: 210, 176, 107;
   }
 
   @keyframes floatSoft {
@@ -61,12 +63,33 @@
     backdrop-filter: blur(18px);
     background: var(--card);
     border: 1px solid var(--border);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  }
+
+  .section-bg {
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 12%,
+      rgba(0, 0, 0, 1) 88%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 12%,
+      rgba(0, 0, 0, 1) 88%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
   }
 
   .tag {
     border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(16, 21, 25, 0.85);
     color: var(--fg-strong);
     padding: 6px 12px;
     font-size: 0.82rem;
@@ -83,7 +106,7 @@
       width: 10px;
     }
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, #d7c4ac, #bda07c);
+      background: linear-gradient(180deg, #d1b06d, #8b6b2a);
       border-radius: 999px;
     }
     ::-webkit-scrollbar-track {
@@ -100,15 +123,15 @@ body {
   scroll-behavior: smooth;
   background: radial-gradient(
       circle at 18% 22%,
-      rgba(206, 178, 140, 0.22),
+      rgba(88, 140, 140, 0.18),
       transparent 38%
     ),
     radial-gradient(
       circle at 82% 12%,
-      rgba(217, 200, 176, 0.18),
+      rgba(210, 176, 107, 0.16),
       transparent 40%
     ),
-    linear-gradient(120deg, #faf6ef, #f3ebde, #f9f4ea);
+    linear-gradient(120deg, #0f1317, #0b0f12, #11171b);
   color: var(--fg-strong);
 }
 
@@ -119,7 +142,7 @@ body::before {
   background: radial-gradient(
     circle at center,
     transparent 70%,
-    rgba(0, 0, 0, 0.08)
+    rgba(0, 0, 0, 0.35)
   );
   pointer-events: none;
 }
@@ -141,6 +164,6 @@ body::after {
 }
 
 ::selection {
-  background: rgba(198, 168, 131, 0.35);
-  color: #2f2a24;
+  background: rgba(209, 176, 109, 0.35);
+  color: #0d1115;
 }

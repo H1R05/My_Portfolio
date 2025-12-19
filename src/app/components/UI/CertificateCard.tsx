@@ -29,9 +29,9 @@ export default function CertificateCard({
     <article
       className="
         group relative rounded-3xl border border-[var(--border)]
-        bg-white/85 transition-all duration-300 
-        hover:bg-white/92 hover:-translate-y-[4px]
-        hover:shadow-[0_16px_32px_rgba(0,0,0,0.08)]
+        bg-[var(--card)] transition-all duration-300 
+        hover:bg-[rgba(20,26,30,0.92)] hover:-translate-y-[4px]
+        hover:shadow-[0_16px_32px_rgba(0,0,0,0.35)]
         will-change-transform
       "
     >
@@ -77,7 +77,7 @@ export default function CertificateCard({
           </p>
 
           <div className="flex items-center justify-between">
-            <span className="px-3 py-1 text-xs rounded-full bg-white/80 border border-[var(--border)]">
+            <span className="px-3 py-1 text-xs rounded-full bg-[rgba(16,21,25,0.85)] border border-[var(--border)]">
               PDF
             </span>
 

@@ -5,11 +5,11 @@ import { useLayoutEffect, useRef } from "react";
 import { bebasNeue, inter } from "../fonts/permanentMarker";
 
 const bio =
-  "Questa passione mi ha portato a scegliere un percorso di studi che mi permette di unire competenze tecniche e creatività. Sono curioso, voglio imparare sempre di più e godermi il viaggio nel mondo dell'informatica, mettendo il cuore in tutto quello che faccio.";
+  "Questa passione mi ha portato a scegliere un percorso di studi che mi permette di unire competenze tecniche e creatività. Voglio imparare sempre di più e godermi il viaggio nel mondo dell'informatica, mettendo il cuore in tutto quello che faccio.";
 const stats = [
   { label: "Progetti", value: "2", href: "#portfolio" },
   { label: "Certificazioni", value: "2", href: "#certifications" },
-  { label: "Portfolio", value: "4", href: "#portfolio" },
+  { label: "Anni di Esperienza", value: "1", href: "#portfolio" },
 ];
 
 export default function About() {
@@ -64,15 +64,15 @@ export default function About() {
     >
       {/* BACKGROUND DECORATIONS */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden section-bg">
-        <div className="absolute right-[6%] top-[10%] h-[18rem] w-[18rem] rounded-full bg-[rgba(155,215,200,0.26)] blur-[160px]" />
-        <div className="absolute left-[-6%] bottom-[-10%] h-[26rem] w-[26rem] rounded-full bg-[rgba(240,138,93,0.22)] blur-[180px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.45),transparent_38%),radial-gradient(circle_at_80%_75%,rgba(255,255,255,0.35),transparent_42%)] opacity-30" />
+        <div className="absolute right-[6%] top-[10%] h-[18rem] w-[18rem] rounded-full bg-[rgba(var(--glow-cyan),0.2)] blur-[160px]" />
+        <div className="absolute left-[-6%] bottom-[-10%] h-[26rem] w-[26rem] rounded-full bg-[rgba(var(--glow-pink),0.18)] blur-[180px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.2),transparent_38%),radial-gradient(circle_at_80%_75%,rgba(255,255,255,0.16),transparent_42%)] opacity-30" />
       </div>
 
       {/* CONTENT */}
       <div className="relative z-10 mx-auto w-full max-w-4xl">
         <div className="about-fade flex items-center gap-3 text-base uppercase tracking-[0.3em] text-[var(--fg-soft)]">
-          <div className="h-px w-10 bg-[rgba(18,49,59,0.2)]" />
+          <div className="h-px w-10 bg-[rgba(243,238,230,0.18)]" />
           <span>Profilo</span>
         </div>
 
@@ -94,7 +94,7 @@ export default function About() {
             <a
               key={item.label}
               href={item.href}
-              className="rounded-2xl border border-[var(--border)] bg-white/80 px-4 py-4 text-center transition-all hover:-translate-y-[2px] hover:border-[var(--accent)]/60"
+              className="rounded-2xl border border-[var(--border)] bg-[var(--card)] px-4 py-4 text-center transition-all hover:-translate-y-[2px] hover:border-[var(--accent)]/60"
             >
               <p className="text-3xl font-semibold text-[var(--fg-strong)]">
                 {item.value}
@@ -107,8 +107,8 @@ export default function About() {
         </div>
 
         <a
-          href="/cvDocument/CVSamu.pdf"
-          className="about-fade inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-full border border-[var(--border)] text-[var(--fg-strong)] text-base hover:border-[var(--accent)] transition-all bg-white/80"
+          href="/cvDocument/2V_NewCv_SamueleAngelicchio.pdf"
+          className="about-fade inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-full border border-[var(--border)] text-[var(--fg-strong)] text-base hover:border-[var(--accent)] transition-all bg-[var(--card)]"
         >
           Scarica il CV completo ↓
         </a>
