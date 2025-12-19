@@ -16,7 +16,7 @@ export default function About() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const hasAnimated = useRef(false);
 
-  // Fade-in leggero sugli elementi della sezione
+  // Fade-in leggero
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
     if (hasAnimated.current) return;
@@ -62,14 +62,14 @@ export default function About() {
       id="about"
       className={`relative min-h-screen flex items-center justify-center px-6 pt-56 pb-32 overflow-hidden mt-[-6rem] scroll-mt-32 ${inter.className}`}
     >
-      {/* BACKGROUND DECORATIONS */}
+      {/* decorazione background */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden section-bg">
         <div className="absolute right-[6%] top-[10%] h-[18rem] w-[18rem] rounded-full bg-[rgba(var(--glow-cyan),0.2)] blur-[160px]" />
         <div className="absolute left-[-6%] bottom-[-10%] h-[26rem] w-[26rem] rounded-full bg-[rgba(var(--glow-pink),0.18)] blur-[180px]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.2),transparent_38%),radial-gradient(circle_at_80%_75%,rgba(255,255,255,0.16),transparent_42%)] opacity-30" />
       </div>
 
-      {/* CONTENT */}
+      {/* contenuto */}
       <div className="relative z-10 mx-auto w-full max-w-4xl">
         <div className="about-fade flex items-center gap-3 text-base uppercase tracking-[0.3em] text-[var(--fg-soft)]">
           <div className="h-px w-10 bg-[rgba(243,238,230,0.18)]" />

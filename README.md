@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react" alt="React Badge"/>
   <img src="https://img.shields.io/badge/Tailwind_CSS-38BDF8?logo=tailwind-css" alt="TailwindCSS Badge"/>
   <img src="https://img.shields.io/badge/GSAP-Animation-brightgreen?logo=greensock" alt="GSAP Badge"/>
-  <img src="https://img.shields.io/badge/tsparticles-Background-blueviolet" alt="tsparticles Badge"/>
+  <img src="https://img.shields.io/badge/Animation-Framer_Motion-6633CC?style=flat&logo=framer&logoColor=white" alt="Framer Motion Badge"/>
   <img src="https://img.shields.io/badge/Deployed_on-Vercel-black?logo=vercel" alt="Vercel Badge"/>
 </p>
 
@@ -31,9 +31,8 @@ In generale, mi ha insegnato cosa significa portare un’idea da semplice bozza 
 ## Tecnologie principali
 
 - **Next.js 14** – per il frontend e la gestione delle rotte
-- **GSAP** – per animazioni fluide e interattive
+- **GSAP e Framer Motion** – per animazioni fluide e interattive
 - **Tailwind CSS** – per uno stile pulito e responsive
-- **tsparticles** – per lo sfondo dinamico di particelle
 - **Vercel** – per l’hosting e il deploy
 
 ---

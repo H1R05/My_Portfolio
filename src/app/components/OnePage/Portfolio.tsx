@@ -168,7 +168,7 @@ export default function Projects() {
       ref={sectionRef}
       className={`relative min-h-screen px-6 py-32 overflow-hidden ${inter.className}`}
     >
-      {/* FRAME + MINI BLUR + HUD */}
+      {/* frame + miniBlur + hud */}
       <div className="section-bg absolute inset-0 pointer-events-none select-none overflow-hidden">
         <div className="absolute left-[-6%] top-[18%] h-[16rem] w-[16rem] rounded-full bg-[rgba(var(--glow-cyan),0.16)] blur-[160px]" />
         <div className="absolute right-[-6%] bottom-[18%] h-[16rem] w-[16rem] rounded-full bg-[rgba(var(--glow-pink),0.14)] blur-[160px]" />

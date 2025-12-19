@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =============================
-   ANIMAZIONI & UTILITIES
-============================= */
+/* animazioni e utilities */
 @layer utilities {
   :root {
     --bg-base: #0d1115;
@@ -115,9 +113,7 @@
   }
 }
 
-/* =============================
-   BACKGROUND GLOBALE
-============================= */
+/* background globale */
 html,
 body {
   scroll-behavior: smooth;

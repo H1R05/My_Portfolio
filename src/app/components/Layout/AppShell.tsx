@@ -61,12 +61,10 @@ export default function AppShell({ children }: AppShellProps) {
 
   useEffect(() => {
     const body = document.body;
-    // Avoid scroll jank while the loader is covering the page
     if (loading) {
       body.style.overflow = "hidden";
     } else {
       body.style.overflow = "";
-      // Recompute ScrollTrigger positions once the loader is gone
       requestAnimationFrame(() => ScrollTrigger.refresh());
     }
     return () => {

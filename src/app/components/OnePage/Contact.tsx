@@ -159,7 +159,7 @@ export default function Contact() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.2),transparent_38%),radial-gradient(circle_at_80%_75%,rgba(255,255,255,0.16),transparent_42%)] opacity-30" />
       </div>
 
-      {/* CONTENUTO */}
+      {/* contenuto */}
       <div
         ref={contentRef}
         className="relative z-10 max-w-6xl w-full grid gap-10 lg:grid-cols-[1fr_1fr] items-start"

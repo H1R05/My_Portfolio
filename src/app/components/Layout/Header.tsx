@@ -20,9 +20,8 @@ export default function Header() {
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
     if (!section) return;
-    const offset = 72; // header height (~64px) + breathing room
-    const top =
-      section.getBoundingClientRect().top + window.scrollY - offset;
+    const offset = 72;
+    const top = section.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top, behavior: "smooth" });
     history.replaceState(null, "", `#${id}`);
   };
@@ -46,7 +45,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* Track section in view (rAF debounced) */
+  /* Track section in view */
   useEffect(() => {
     const sections = links
       .map((l) => document.getElementById(l.id))
@@ -113,14 +112,13 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-10">
-        {/* LOGO */}
         <div className="flex items-center gap-3 text-[var(--fg-strong)]">
           <span className="text-lg font-semibold tracking-tight">
             Samuele Angelicchio
           </span>
         </div>
 
-        {/* NAVIGATION */}
+        {/* navigation */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--fg-soft)]">
           {links.map((link) => {
             const isActive = active === link.id;

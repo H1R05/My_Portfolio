@@ -13,10 +13,6 @@ const greetings = [
   "namaste",
   "konnichiwa",
   "salam",
-  "merhaba",
-  "hej",
-  "szia",
-  "yassas",
 ];
 
 export default function LoadingScreen() {
