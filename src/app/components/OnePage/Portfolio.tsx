@@ -246,7 +246,7 @@ export default function Projects() {
                 Stack tecnologico
               </p>
               <h3 className="text-2xl font-semibold text-[var(--fg-strong)]">
-                Tecnologie che uso ogni giorno
+                Tecnologie apprese
               </h3>
             </div>
           </div>
