@@ -74,7 +74,7 @@ export default function Home() {
               Esplora i progetti ↗
             </a>
             <a
-              href="/cvDocument/newCv2025_v3_SamueleAngelicchio.pdf"
+              href="/cvDocument/NewCV2026.pdf"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border)] text-[var(--fg-strong)] text-base hover:border-[var(--fg-soft)] transition-colors"
             >
               Scarica CV

@@ -107,7 +107,7 @@ export default function About() {
         </div>
 
         <a
-          href="/cvDocument/2V_NewCv_SamueleAngelicchio.pdf"
+          href="/cvDocument/NewCV2026.pdf"
           className="about-fade inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-full border border-[var(--border)] text-[var(--fg-strong)] text-base hover:border-[var(--accent)] transition-all bg-[var(--card)]"
         >
           Scarica il CV completo ↓
